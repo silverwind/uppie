@@ -48,7 +48,7 @@
         promises.push(new Promise(function (resolve) {
           if ("getFilesAndDirectories" in entry) { // it's a directory
             entry.getFilesAndDirectories().then(function (entries) {
-              if (opts.includeEmptyDirectories && !entries.length) {
+              if (opts.empty && !entries.length) {
                 var p = (path + entry.name + "/").replace(/^\//, "");
                 fd.append(entry.name + "/", new Blob(), p);
                 files.push(p);
@@ -125,7 +125,7 @@
             } else readDirectory(entry, path + "/" + entry.name, resolve);
           }));
         });
-        if (opts.includeEmptyDirectories && !entries.length) {
+        if (opts.empty && !entries.length) {
           fd.append(entry.name + "/", new Blob(), path + "/" + entry.name + "/");
           files.push(path + "/" + entry.name + "/");
         }
