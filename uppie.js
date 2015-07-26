@@ -21,7 +21,7 @@ function newDirectoryApi(event, opts, cb) {
   var fd = new FormData(), files = [];
   var iterate = function (entries, path, resolve) {
     var promises = [];
-    [].slice.call(entries).forEach(function (entry) {
+    entries.forEach(function (entry) {
       var promise = new Promise(function (resolve) {
         if ("getFilesAndDirectories" in entry) { // it's a directory
           entry.getFilesAndDirectories().then(function (entries) {
