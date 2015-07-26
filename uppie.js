@@ -1,21 +1,23 @@
 /*! uppie | (c) 2015 silverwind | BSD license */
-/* eslint-disable strict, no-wrap-func */
+/* eslint-disable strict */
 
-(function (mod) {
+(function (m) {
   if (typeof exports === "object" && typeof module === "object") // CommonJS
-    module.exports = mod();
+    module.exports = m();
   else if (typeof define === "function" && define.amd) // AMD
-    return define([], mod);
+    return define([], m);
   else // Plain browser environment
-    this.Uppie = mod();
+    this.Uppie = m();
 })(function () {
   "use strict";
+  var gfd = "getFilesAndDirectories";
+
   return function Uppie(opts) {
     return function (node, cb) {
       if (node.tagName === "INPUT" && node.type === "file") {
         node.addEventListener("change", function (event) {
           if (!event.target.files || !event.target.files.length) return;
-          if ("getFilesAndDirectories" in event.target) {
+          if (gfd in event.target) {
             newDirectoryApi(event.target, opts, cb);
           } else if ("webkitRelativePath" in event.target.files[0]) {
             oldDirectoryApi(event.target, opts, cb);
@@ -29,7 +31,7 @@
         node.addEventListener("dragenter", stop);
         node.addEventListener("drop", function (event) {
           event.preventDefault();
-          if ("getFilesAndDirectories" in event.dataTransfer) {
+          if (gfd in event.dataTransfer) {
             newDirectoryApi(event.dataTransfer, opts, cb);
           } else if ("webkitdirectory" in document.createElement("input")) {
             oldDropApi(event.dataTransfer.items, opts, cb);
@@ -46,11 +48,11 @@
       var promises = [];
       entries.forEach(function (entry) {
         promises.push(new Promise(function (resolve) {
-          if ("getFilesAndDirectories" in entry) { // it's a directory
+          if (gfd in entry) { // it's a directory
             entry.getFilesAndDirectories().then(function (entries) {
               if (opts.empty && !entries.length) {
                 var p = (path + entry.name + "/").replace(/^\//, "");
-                fd.append(entry.name + "/", "", p);
+                fd.append(entry.name + "/", new Blob(), p);
                 files.push(p);
               }
               iterate(entries, entry.path + entry.name + "/", resolve);
@@ -126,7 +128,7 @@
           }));
         });
         if (opts.empty && !entries.length) {
-          fd.append(entry.name + "/", "", path + "/" + entry.name + "/");
+          fd.append(entry.name + "/", new Blob(), path + "/" + entry.name + "/");
           files.push(path + "/" + entry.name + "/");
         }
         Promise.all(promises).then(resolve.bind());
