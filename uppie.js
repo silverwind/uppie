@@ -31,10 +31,11 @@
         node.addEventListener("dragenter", stop);
         node.addEventListener("drop", function (event) {
           event.preventDefault();
-          if (gfd in event.dataTransfer) {
-            newDirectoryApi(event.dataTransfer, opts, cb);
-          } else if ("webkitdirectory" in document.createElement("input")) {
-            oldDropApi(event.dataTransfer.items, opts, cb);
+          var dataTransfer = event.dataTransfer;
+          if (gfd in dataTransfer) {
+            newDirectoryApi(dataTransfer, opts, cb);
+          } else if (dataTransfer.items) {
+            oldDropApi(dataTransfer.items, opts, cb);
           }
         });
       }
