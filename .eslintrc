@@ -88,3 +88,4 @@ rules:
 env:
   node: true
   browser: true
+  amd: true
