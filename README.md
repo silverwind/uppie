@@ -1,9 +1,7 @@
 # uppie [![NPM version](https://img.shields.io/npm/v/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie) [![Dependency Status](http://img.shields.io/david/silverwind/uppie.svg?style=flat)](https://david-dm.org/silverwind/uppie) [![Downloads per month](http://img.shields.io/npm/dm/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie)
 > Cross-browser directory uploads made easy
 
-uppie wraps all current implementations of directory uploads into one simple function call and delivers a standardized `FormData` object to be summitted through XHR. Both input elements and drag and drop are supported.
-
-The minimum required browsers are Chrome 11+, Firefox 42+ and Edge.
+uppie wraps all current implementations of directory uploads into one simple function call and delivers a standardized `FormData` object to be summitted through XHR. Both input elements and drag and drop are supported. The minimum required browsers are Chrome 11+, Firefox 42+ and Edge.
 ## Example usage
 ```html
 <input type="file" id="file-input" multiple directory webkitdirectory/>
@@ -41,5 +39,6 @@ The callback receives `formData` (to be used for XHR uploading) and `files` (an 
 - Chrome's `<input>` implementation doesn't include empty directories ([Chromium bug](https://code.google.com/p/chromium/issues/detail?can=2&id=360412)).
 - Drag and drop uploads may not work in Firefox yet.
 - Needs to be tested on Edge.
+- See https://microsoftedge.github.io/directory-upload/proposal.html for more details on the API implemented in Firefox and Edge.
 
 © 2015 [silverwind](https://github.com/silverwind), distributed under BSD licence
