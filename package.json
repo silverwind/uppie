@@ -1,0 +1,27 @@
+{
+  "name": "uppie.js",
+  "version": "0.1.0",
+  "description": "Cross-browser directory uploads made easy",
+  "author": "silverwind",
+  "license": "BSD-2-Clause",
+  "repository": "silverwind/uppie",
+  "scripts": {
+    "min": "uglifyjs uppie.js -o uppie.min.js --comments '/uppie/'",
+    "patch": "eslint . && npm run min && npm version patch && npm publish && git push --follow-tags",
+    "minor": "eslint . && npm run min && npm version minor && npm publish && git push --follow-tags",
+    "major": "eslint . && npm run min && npm version major && npm publish && git push --follow-tags"
+  },
+  "keywords": [
+    "directory",
+    "upload",
+    "formdata",
+    "xhr",
+    "ajax",
+    "browser",
+    "cross-browser"
+  ],
+  "files": [
+    "uppie.js",
+    "uppie.min.js"
+  ]
+}
