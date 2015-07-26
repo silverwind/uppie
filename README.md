@@ -38,6 +38,6 @@ The callback receives `formData` (to be used for XHR uploading) and `files` (an 
 
 ## Drawbacks
 
-- Chrome's implementation doesn't include empty directories in the API ([Chromium bug](https://code.google.com/p/chromium/issues/detail?can=2&id=360412)).
+- Chrome's `<input>` implementation doesn't include empty directories ([Chromium bug](https://code.google.com/p/chromium/issues/detail?can=2&id=360412)).
 
 © 2015 [silverwind](https://github.com/silverwind), distributed under BSD licence
