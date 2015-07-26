@@ -1,7 +1,7 @@
 # uppie [![NPM version](https://img.shields.io/npm/v/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie) [![Dependency Status](http://img.shields.io/david/silverwind/uppie.svg?style=flat)](https://david-dm.org/silverwind/uppie) [![Downloads per month](http://img.shields.io/npm/dm/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie)
 > Cross-browser directory uploads made easy
 
-uppie wraps all current implementations of directory uploads into one simple function call and delivers a standardized `FormData` object to be summitted through XHR. Both input elements and drag and drop are supported. The minimum required browsers are Chrome 11+, Firefox 42+ and Edge.
+uppie wraps all current implementations of directory uploads into one simple function call and delivers a standardized `FormData` object to be summitted through XHR. Both input elements and drag and drop are supported. The minimum required browsers are Chrome 29+, Firefox 42+ and Edge.
 ## Example usage
 ```html
 <input type="file" id="file-input" multiple directory webkitdirectory/>
