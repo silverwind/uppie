@@ -50,7 +50,7 @@
             entry.getFilesAndDirectories().then(function (entries) {
               if (opts.empty && !entries.length) {
                 var p = (path + entry.name + "/").replace(/^\//, "");
-                fd.append(entry.name + "/", new Blob(), p);
+                fd.append(entry.name + "/", "", p);
                 files.push(p);
               }
               iterate(entries, entry.path + entry.name + "/", resolve);
@@ -126,7 +126,7 @@
           }));
         });
         if (opts.empty && !entries.length) {
-          fd.append(entry.name + "/", new Blob(), path + "/" + entry.name + "/");
+          fd.append(entry.name + "/", "", path + "/" + entry.name + "/");
           files.push(path + "/" + entry.name + "/");
         }
         Promise.all(promises).then(resolve.bind());
