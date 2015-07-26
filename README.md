@@ -25,7 +25,7 @@ Valid options for the constructor are:
 - `includeEmptyDirectories` *boolean*: Whether to include empty directories. To discern from empty files, empty directories are identified by a trailing slash in both the `name` and `filename` formData fields and will require special code on the server to handle. Default: `false`.
 
 ### uppie(node, callback)
-- `node` *Node* : If a file input is given, uppie will monitor it for `change` events. Any other element type will be enabled as a dropzone and watched for `drop` events. If you want to use both on the same element, use a hidden <input> and forward the click event.
+- `node` *Node* : If a file input is given, uppie will monitor it for `change` events. Any other element type will be enabled as a dropzone and watched for `drop` events. If you want to use both on the same element, use a hidden `<input>` and forward the click event.
 - `callback` *function*: callback which is called every time the selected files change or when files are dropped in the dropzone.
 
 The callback receives `formData` (to be used for XHR uploading) and `files` (an array of paths, useful previewing).
