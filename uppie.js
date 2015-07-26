@@ -73,7 +73,7 @@ function oldDirectoryApi(input, opts, cb) {
   cb(fd, files);
 }
 
-// fallback for  files without directories
+// fallback for files without directories
 function multipleApi(input, cb) {
   var fd = new FormData(), files = [];
   [].slice.call(input.files).forEach(function (file) {
@@ -83,9 +83,8 @@ function multipleApi(input, cb) {
   cb(fd, files);
 }
 
-// old DnD API implemented in Chrome 11+
+// old drag and drop API implemented in Chrome 11+
 function oldDropApi(items, opts, cb) {
-  console.log("SSS");
   var fd = new FormData(), files = [], rootPromises = [];
 
   function readEntries(entry, reader, oldEntries, cb) {
@@ -124,7 +123,6 @@ function oldDropApi(items, opts, cb) {
   }
 
   [].slice.call(items).forEach(function (entry) {
-    console.log(entry);
     entry = entry.webkitGetAsEntry();
     if (entry) {
       rootPromises.push(new Promise(function (resolve) {
