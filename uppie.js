@@ -49,15 +49,17 @@
           if ("getFilesAndDirectories" in entry) { // it's a directory
             entry.getFilesAndDirectories().then(function (entries) {
               if (opts.includeEmptyDirectories && !entries.length) {
-                fd.append(entry.name + "/", new Blob(), path + entry.name + "/");
-                files.push(path + entry.name + "/");
+                var p = (path + entry.name + "/").replace(/^\//, "");
+                fd.append(entry.name + "/", new Blob(), p);
+                files.push(p);
               }
               iterate(entries, entry.path + entry.name + "/", resolve);
             });
           } else { // it's a file
             if (entry.name) {
-              fd.append(entry.name, entry, path + entry.name);
-              files.push(path + entry.name);
+              var p = (path + entry.name).replace(/^\//, "");
+              fd.append(entry.name, entry, p);
+              files.push(p);
             }
             resolve();
           }
