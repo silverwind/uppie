@@ -3,6 +3,7 @@
 
 uppie wraps all current implementations of directory uploads into one simple function call and delivers a standardized `FormData` object to be summitted through XHR. Currently only file inputs are supported, drag and drop will follow soon.
 
+The minimum required browsers are Chrome 11, Firefox 42 and Edge.
 ## Example usage
 ```html
 <input type="file" id="file-input" multiple directory webkitdirectory/>
@@ -32,8 +33,8 @@ The callback receives `formData` (to be used for XHR uploading) and `files` (an 
 ## Recommended `input` attributes
 
 - `multiple`: to allow multiple files to be selected
-- `directory`: to enable directory upload in Firefox (42+) and Edge.
-- `webkitDirectory`: to enable directory upload in Chrome (11+).
+- `directory`: to enable directory upload in Firefox (42+) and Edge
+- `webkitDirectory`: to enable directory upload in Chrome (11+)
 
 ## Drawbacks
 
