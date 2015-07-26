@@ -2,8 +2,13 @@
 <html>
 <head>
   <title>uppie example</title>
+  <style>
+    html {height:100%}
+    body {height: calc(100% - 1em); padding: .5em; margin:0}
+  </style>
 </head>
 <body>
+  <p>Drop files on this site, or choose below!</p>
   <input type="file" id ="input" multiple directory webkitdirectory></input>
   <pre id="output"></pre>
   <script src="uppie.js"></script>
