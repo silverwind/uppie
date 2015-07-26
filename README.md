@@ -33,7 +33,7 @@ The callback receives `formData` (to be used for XHR uploading) and `files` (an 
 
 - `multiple`: to allow multiple files to be selected
 - `directory`: to enable directory upload in Firefox (42+) and Edge
-- `webkitDirectory`: to enable directory upload in Chrome (11+)
+- `webkitDirectory`: to enable directory upload in Chrome (29+)
 
 ## Notes
 
