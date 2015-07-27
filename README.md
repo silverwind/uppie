@@ -38,8 +38,8 @@ The callback receives `formData` (to be used for XHR uploading) and `files` (an 
 ## Notes
 
 - Chrome's `<input>` implementation doesn't include empty directories ([Chromium bug](https://code.google.com/p/chromium/issues/detail?can=2&id=360412)).
-- Drag and drop uploads may not work in Firefox yet.
-- Needs to be tested on Edge.
+- Drag and drop uploads may not work in Firefox yet because of a browser bug.
 - See [here](https://microsoftedge.github.io/directory-upload/proposal.html) for more details on the API implemented in Firefox and Edge.
+- Needs to be tested on Edge.
 
 © 2015 [silverwind](https://github.com/silverwind), distributed under BSD licence
