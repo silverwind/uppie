@@ -10,7 +10,7 @@
     this.Uppie = m();
 })(function () {
   "use strict";
-  var gfd = "getFilesAndDirectories";
+  var gfd = "getFilesAndDirectories"; // saves a few bytes after minifying
 
   return function Uppie(opts) {
     return function (node, cb) {
