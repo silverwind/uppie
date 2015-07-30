@@ -35,6 +35,17 @@ The callback receives `formData` (to be used for XHR uploading) and `files` (an 
 - `directory`: to enable directory upload in Firefox (42+) and Edge
 - `webkitdirectory`: to enable directory upload in Chrome (29+)
 
+## Browser support status
+
+Browser support is a bit lacking right now, but once the remaining browser bugs are fixed, Firefox, Chrome and Edge should all support the full API:
+
+|         | file input           | drag and drop        |
+|---------|----------------------|----------------------|
+| Firefox | yes (42+)            | no (browser bug)     |
+| Chrome  | yes                  | yes                  |
+| Edge    | no (not implemented) | no (browser bug)     |
+| Safari  | no (not implemented) | no (not implemented) |
+
 ## Notes
 
 - Chrome's `<input>` implementation doesn't include empty directories ([Chromium bug](https://code.google.com/p/chromium/issues/detail?can=2&id=360412)).
