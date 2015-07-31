@@ -39,12 +39,12 @@ The callback receives `formData` (to be used for XHR uploading) and `files` (an 
 
 Browser support is a bit lacking right now, but once the remaining browser bugs are fixed, Firefox, Chrome and Edge should all support the full API:
 
-|         | file input           | drag and drop        |
-|---------|----------------------|----------------------|
-| Firefox | yes (42+)            | yes (in multiprocess)|
-| Chrome  | yes                  | yes                  |
-| Edge    | no (not implemented) | no (browser bug)     |
-| Safari  | no (not implemented) | no (not implemented) |
+|             | file input                  | drag and drop                   |
+|-------------|-----------------------------|---------------------------------|
+| Firefox 42+ | yes                         | yes (in multiprocess)           |
+| Chrome      | yes                         | yes                             |
+| Edge        | no (pending implementation) | no (pending implementation)     |
+| Safari      | no (not implemented)        | no (not implemented)            |
 
 ## Notes
 
