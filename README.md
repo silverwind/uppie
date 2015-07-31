@@ -41,7 +41,7 @@ Browser support is a bit lacking right now, but once the remaining browser bugs 
 
 |         | file input           | drag and drop        |
 |---------|----------------------|----------------------|
-| Firefox | yes (42+)            | no (browser bug)     |
+| Firefox | yes (42+)            | yes (in multiprocess)|
 | Chrome  | yes                  | yes                  |
 | Edge    | no (not implemented) | no (browser bug)     |
 | Safari  | no (not implemented) | no (not implemented) |
