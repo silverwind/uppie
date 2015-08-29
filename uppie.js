@@ -1,6 +1,6 @@
 /*! uppie | (c) 2015 silverwind | BSD license */
+/* eslint-env browser, commonjs, amd */
 /* eslint-disable strict */
-/* eslint-env amd */
 
 (function (m) {
   if (typeof exports === "object" && typeof module === "object") // CommonJS
