@@ -15,7 +15,7 @@
 
   return function Uppie(opts) {
     return function (node, cb) {
-      if (node.tagName === "INPUT" && node.type === "file") {
+      if (/^input$/i.test(node.tagName) && node.type === "file") {
         node.addEventListener("change", function (event) {
           if (!event.target.files || !event.target.files.length) return;
           if (gfd in event.target) {
