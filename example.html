@@ -12,6 +12,18 @@
     <input type="file" id ="input" multiple directory webkitdirectory></input>
     <pre id="output"></pre>
     <script src="uppie.js"></script>
-    <script src="example.js"></script>
+    <script>
+      /* used on an input element */
+      var uppie = new Uppie({empty: true});
+      uppie(document.querySelector("#input"), function (formData, files) {
+        document.querySelector("#output").textContent = files.join("\n");
+      });
+
+      /* used on a dropzone element */
+      var uppie = new Uppie({empty: true});
+      uppie(document.body, function (formData, files) {
+        document.querySelector("#output").textContent = files.join("\n");
+      });
+    </script>
   </body>
 </html>
