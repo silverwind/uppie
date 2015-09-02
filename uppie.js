@@ -82,8 +82,8 @@
   function oldDirectoryApi(input, opts, cb) {
     var fd = new FormData(), files = [];
     [].slice.call(input.files).forEach(function (file) {
-      fd.append(file.name, file, file.webkitRelativePath);
-      files.push(file.webkitRelativePath);
+      fd.append(file.name, file, file.webkitRelativePath || file.name);
+      files.push(file.webkitRelativePath || file.name);
     });
     cb(fd, files);
   }
