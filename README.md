@@ -3,7 +3,7 @@
 
 uppie wraps all current implementations of directory uploads into one simple function call and delivers a `FormData` object to be summitted through XHR. Both the `<input>` element and drag and drop are supported. The minimum required browsers are Chrome 29+ and Firefox 42+. Edge will eventually support this, but does not as of build 10532.
 
-## Example usage
+## Example
 ```html
 <input type="file" id="file-input" multiple directory webkitdirectory/>
 <script src="uppie.js"></script>
@@ -19,10 +19,6 @@ uppie(document.querySelector('#file-input'), function (formData, files) {
 ```
 
 ## API
-### Uppie([options])
-Valid options for the constructor are:
-- `empty` *boolean*: Whether to include empty directories. To discern from empty files, empty directories are identified by a trailing slash in both the `name` and `filename` formData fields and will require special code on the server to handle. Default: `false`.
-
 ### uppie(node, callback)
 - `node` *Node*: A DOM node. If a file input is given, uppie will monitor it for `change` events. Any other element type will be enabled as a dropzone and watched for `drop` events. If you want to use both on the same element, use a hidden `<input>` and forward the click event.
 - `callback` *function*: callback which is called every time the selected files change or when files are dropped in the dropzone.

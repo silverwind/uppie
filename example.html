@@ -10,12 +10,12 @@
     <script src="uppie.js"></script>
     <script>
       /* used on an input element */
-      var uppie = new Uppie({empty: true});
+      var uppie = new Uppie();
       uppie(document.querySelector("#input"), function (formData, files) {
         document.querySelector("#output").textContent = files.join("\n");
       });
       /* used on a dropzone element */
-      var uppie = new Uppie({empty: true});
+      var uppie = new Uppie();
       uppie(document.body, function (formData, files) {
         document.querySelector("#output").textContent = files.join("\n");
       });

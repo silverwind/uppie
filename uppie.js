@@ -13,15 +13,15 @@
   "use strict";
   var gfd = "getFilesAndDirectories"; // saves a few bytes after minifying
 
-  return function Uppie(opts) {
+  return function Uppie() {
     return function (node, cb) {
       if (/^input$/i.test(node.tagName) && node.type === "file") {
         node.addEventListener("change", function (event) {
           if (!event.target.files || !event.target.files.length) return;
           if (gfd in event.target) {
-            newDirectoryApi(event.target, opts, cb);
+            newDirectoryApi(event.target, cb);
           } else if ("webkitRelativePath" in event.target.files[0]) {
-            oldDirectoryApi(event.target, opts, cb);
+            oldDirectoryApi(event.target, cb);
           } else {
             multipleApi(event.target, cb);
           }
@@ -34,9 +34,9 @@
           event.preventDefault();
           var dataTransfer = event.dataTransfer;
           if (gfd in dataTransfer) {
-            newDirectoryApi(dataTransfer, opts, cb);
+            newDirectoryApi(dataTransfer, cb);
           } else if (dataTransfer.items) {
-            oldDropApi(dataTransfer.items, opts, cb);
+            oldDropApi(dataTransfer.items, cb);
           }
         });
       }
@@ -44,7 +44,7 @@
   };
 
   // API implemented in Firefox 42+ and Edge
-  function newDirectoryApi(input, opts, cb) {
+  function newDirectoryApi(input, cb) {
     var fd = new FormData(), files = [];
     var iterate = function (entries, path, resolve) {
       var promises = [];
@@ -52,11 +52,6 @@
         promises.push(new Promise(function (resolve) {
           if (gfd in entry) { // it's a directory
             entry.getFilesAndDirectories().then(function (entries) {
-              if (opts.empty && !entries.length) {
-                var p = (path + entry.name + "/").replace(/^\//, "");
-                fd.append(entry.name + "/", new Blob(), p);
-                files.push(p);
-              }
               iterate(entries, entry.path + entry.name + "/", resolve);
             });
           } else { // it's a file
@@ -79,7 +74,7 @@
   }
 
   // old prefixed API implemented in Chrome 11+
-  function oldDirectoryApi(input, opts, cb) {
+  function oldDirectoryApi(input, cb) {
     var fd = new FormData(), files = [];
     [].slice.call(input.files).forEach(function (file) {
       fd.append(file.name, file, file.webkitRelativePath || file.name);
@@ -99,7 +94,7 @@
   }
 
   // old drag and drop API implemented in Chrome 11+
-  function oldDropApi(items, opts, cb) {
+  function oldDropApi(items, cb) {
     var fd = new FormData(), files = [], rootPromises = [];
 
     function readEntries(entry, reader, oldEntries, cb) {
@@ -129,10 +124,6 @@
             } else readDirectory(entry, path + "/" + entry.name, resolve);
           }));
         });
-        if (opts.empty && !entries.length) {
-          fd.append(entry.name + "/", new Blob(), path + "/" + entry.name + "/");
-          files.push(path + "/" + entry.name + "/");
-        }
         Promise.all(promises).then(resolve.bind());
       });
     }
