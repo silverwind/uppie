@@ -1,7 +1,11 @@
 # uppie [![NPM version](https://img.shields.io/npm/v/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie) [![Dependency Status](http://img.shields.io/david/silverwind/uppie.svg?style=flat)](https://david-dm.org/silverwind/uppie) [![Downloads per month](http://img.shields.io/npm/dm/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie)
 > Cross-browser directory uploads made easy
 
-uppie wraps all current implementations of directory uploads into one simple function call and delivers a `FormData` object to be summitted through XHR. Both the `<input>` element and drag and drop are supported. The minimum required browsers are Chrome 29+ and Firefox 42+. Edge will eventually support this, but does not as of build 10532.
+uppie is a tiny library (less than 1 KiB gzipped) which wraps all current implementations of directory and multi-file uploading into a simple function and delivers a `FormData` object to be summitted through XHR.
+
+Both the `<input>` element and drag and drop are supported. The minimum required browsers for directory uploads are Chrome 29+ and Firefox 42+. Edge will eventually support this, but does not as of build 10532.
+
+You can lower the browser requirements by providing a `Promise` polyfill, at which point your limiting factor will be [xhr2 suppport](http://caniuse.com/#feat=xhr2).
 
 ## Example
 ```html
