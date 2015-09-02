@@ -22,9 +22,21 @@ uppie(document.querySelector('#file-input'), function (formData, files) {
 });
 ```
 
+## Browser support
+
+Browser support for directory upload is pretty much WIP. You can still use uppie for single or multi-file uploads in browsers that don't support directories yet.
+
+|         | directories in input[file] | directories in drag and drop |
+|---------|----------------------------|------------------------------|
+| Firefox | yes (42+)                  | yes (42+, in multiprocess)   |
+| Chrome  | yes (29+)                  | yes (29+)                    |
+| Edge    | no (as of build 10532)     | no (as of build 10532)       |
+| Safari  | no                         | no                           |
+
+
 ## API
 ### uppie(node, callback)
-- `node` *Node*: A DOM node. If a file input is given, uppie will monitor it for `change` events. Any other element type will be enabled as a dropzone and watched for `drop` events. If you want to use both on the same element, use a hidden `<input>` and forward the click event.
+- `node` *Node*: A DOM node. If a `<input type="file">` is given, uppie will monitor it for `change` events. Any other element type will be enabled as a dropzone and watched for `drop` events. If you want to use both on the same element, use a hidden `<input>` and forward the click event.
 - `callback` *function*: callback which is called every time the selected files change or when files are dropped in the dropzone.
 
 The callback receives `formData` (to be used for XHR uploading) and `files` (an array of paths for preview purposes). The format of each `formData` entry is as follows:
@@ -38,16 +50,5 @@ The callback receives `formData` (to be used for XHR uploading) and `files` (an 
 - `multiple`: to allow multiple files to be selected
 - `directory`: to enable directory upload in Firefox (42+) and Edge (soon)
 - `webkitdirectory`: to enable directory upload in Chrome (29+)
-
-## Browser support status
-
-Browser support for directory upload is a bit lacking at the moment but Firefox, Chrome and Edge should all be fully supported in the near future.
-
-|         | directories in input[file] | directories in drag and drop |
-|---------|----------------------------|------------------------------|
-| Firefox | yes (42+)                  | yes (42+, in multiprocess)   |
-| Chrome  | yes (29+)                  | yes (29+)                    |
-| Edge    | no (as of build 10532)     | no (as of build 10532)       |
-| Safari  | no                         | no                           |
 
 © 2015 [silverwind](https://github.com/silverwind), distributed under BSD licence
