@@ -57,7 +57,7 @@
           } else { // it's a file
             if (entry.name) {
               var p = (path + entry.name).replace(/^\//, "");
-              fd.append(entry.name, entry, p);
+              fd.append("file", entry, p);
               files.push(p);
             }
             resolve();
@@ -77,7 +77,7 @@
   function oldDirectoryApi(input, cb) {
     var fd = new FormData(), files = [];
     [].slice.call(input.files).forEach(function (file) {
-      fd.append(file.name, file, file.webkitRelativePath || file.name);
+      fd.append("file", file, file.webkitRelativePath || file.name);
       files.push(file.webkitRelativePath || file.name);
     });
     cb(fd, files);
@@ -87,7 +87,7 @@
   function multipleApi(input, cb) {
     var fd = new FormData(), files = [];
     [].slice.call(input.files).forEach(function (file) {
-      fd.append(file.name, file, file.name);
+      fd.append("file", file, file.name);
       files.push(file.name);
     });
     cb(fd, files);
@@ -117,7 +117,7 @@
           promises.push(new Promise(function (resolve) {
             if (entry.isFile) {
               entry.file(function (file) {
-                fd.append(file.name, file, path + "/" + file.name);
+                fd.append("file", file, path + "/" + file.name);
                 files.push(path + "/" + file.name);
                 resolve();
               }, resolve.bind());
@@ -134,7 +134,7 @@
         rootPromises.push(new Promise(function (resolve) {
           if (entry.isFile) {
             entry.file(function (file) {
-              fd.append(file.name, file, file.name);
+              fd.append("file", file, file.name);
               files.push(file.name);
               resolve();
             }, resolve.bind());
