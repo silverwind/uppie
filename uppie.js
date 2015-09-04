@@ -12,7 +12,7 @@
   "use strict";
   return function Uppie() {
     return function (node, cb) {
-      if (node.tagName.toLowerCase === "input" && node.type === "file") {
+      if (node.tagName.toLowerCase() === "input" && node.type === "file") {
         node.addEventListener("change", function (event) {
           if (!event.target.files || !event.target.files.length) return;
           if ("getFilesAndDirectories" in event.target) {
