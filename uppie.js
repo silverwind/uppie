@@ -1,8 +1,7 @@
 /*! uppie | (c) 2015 silverwind | BSD license */
 /* eslint-env browser, commonjs, amd */
-/* eslint strict: [2, "function"] */
+/* eslint-disable strict */
 (function (m) {
-  "use strict";
   if (typeof exports === "object" && typeof module === "object")
     module.exports = m();
   else if (typeof define === "function" && define.amd)
