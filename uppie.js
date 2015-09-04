@@ -1,24 +1,22 @@
 /*! uppie | (c) 2015 silverwind | BSD license */
 /* eslint-env browser, commonjs, amd */
-/* eslint-disable strict */
-
+/* eslint strict: [2, "function"] */
 (function (m) {
-  if (typeof exports === "object" && typeof module === "object") // CommonJS
+  "use strict";
+  if (typeof exports === "object" && typeof module === "object")
     module.exports = m();
-  else if (typeof define === "function" && define.amd) // AMD
+  else if (typeof define === "function" && define.amd)
     return define([], m);
-  else // Plain browser environment
+  else
     this.Uppie = m();
 })(function () {
   "use strict";
-  var gfd = "getFilesAndDirectories"; // saves a few bytes after minifying
-
   return function Uppie() {
     return function (node, cb) {
-      if (/^input$/i.test(node.tagName) && node.type === "file") {
+      if (node.tagName.toLowerCase === "input" && node.type === "file") {
         node.addEventListener("change", function (event) {
           if (!event.target.files || !event.target.files.length) return;
-          if (gfd in event.target) {
+          if ("getFilesAndDirectories" in event.target) {
             newDirectoryApi(event.target, cb);
           } else if ("webkitRelativePath" in event.target.files[0]) {
             oldDirectoryApi(event.target, cb);
@@ -33,7 +31,7 @@
         node.addEventListener("drop", function (event) {
           event.preventDefault();
           var dataTransfer = event.dataTransfer;
-          if (gfd in dataTransfer) {
+          if ("getFilesAndDirectories" in dataTransfer) {
             newDirectoryApi(dataTransfer, cb);
           } else if (dataTransfer.items) {
             oldDropApi(dataTransfer.items, cb);
@@ -50,7 +48,7 @@
       var promises = [];
       entries.forEach(function (entry) {
         promises.push(new Promise(function (resolve) {
-          if (gfd in entry) { // it's a directory
+          if ("getFilesAndDirectories" in entry) { // it's a directory
             entry.getFilesAndDirectories().then(function (entries) {
               iterate(entries, entry.path + entry.name + "/", resolve);
             });
