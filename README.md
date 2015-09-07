@@ -41,14 +41,14 @@ Browser support for directory upload is pretty much WIP. You can still use uppie
 
 The callback receives
 
-- `event` *Event*: the original event. Useful for calling `.stopPropagation()`
-- `formData` *FormData*: FormData object to be used for XHR2 uploading
-- `files` *Array*: Array of paths for preview purposes
+- `event` *Event*: the original event. Useful for calling `.stopPropagation()`.
+- `formData` *FormData*: FormData object to be used for XHR2 uploading.
+- `files` *Array*: Array of paths for preview purposes.
 
 #### FormData format
 
-- `name` will always be `'file'`
-- `filename` will be the full path to the file, with `/` used as path separator. Does not include a leading slash
+- `name` will always be `'file'`.
+- `filename` will be the full path to the file, with `/` used as path separator. Does not include a leading slash.
 
 Here's an example:
 ```
@@ -69,8 +69,8 @@ Content-Type: text/plain
 
 ## Recommended `input` attributes
 
-- `multiple`: to allow multiple files to be selected
-- `directory`: to enable directory upload in Firefox (42+) and Edge (soon)
-- `webkitdirectory`: to enable directory upload in Chrome (29+)
+- `multiple`: to allow multiple files to be selected.
+- `directory`: to enable directory upload in Firefox (42+) and Edge (soon).
+- `webkitdirectory`: to enable directory upload in Chrome (29+).
 
 © 2015 [silverwind](https://github.com/silverwind), distributed under BSD licence
