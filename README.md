@@ -15,7 +15,7 @@ You can lower the browser requirements by providing a `Promise` polyfill, at whi
 ```js
 var uppie = new Uppie();
 
-uppie(document.querySelector('#file-input'), function (formData, files) {
+uppie(document.querySelector('#file-input'), function (event, formData, files) {
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/upload');
   xhr.send(formData);
@@ -39,11 +39,31 @@ Browser support for directory upload is pretty much WIP. You can still use uppie
 - `node` *Node*: A DOM node. If a `<input type="file">` is given, uppie will monitor it for `change` events. Any other element type will be enabled as a dropzone and watched for `drop` events. If you want to use both on the same element, use a hidden `<input>` and forward the click event.
 - `callback` *function*: callback which is called every time the selected files change or when files are dropped in the dropzone.
 
-The callback receives `formData` (to be used for XHR uploading) and `files` (an array of paths for preview purposes). The format of each `formData` entry is as follows:
+The callback receives
 
-- `name` : The file name. With `empty` set, `/` is appended for empty directories.
-- `value`: The file data.
-- `filename`: The full path to the file, with `/` used as path separator. Does not include a leading slash. With `empty` set, `/` is appended for empty directories.
+- `event` *Event*: the original event. Useful for calling `.stopPropagation()`
+- `formData` *FormData*: FormData object to be used for XHR2 uploading
+- `files` *Array*: Array of paths for preview purposes
+
+#### FormData format
+
+`name` will always be `'file'`, `filename` will be the full path to the file, with `/` used as path separator. Does not include a leading slash. Here's aan exampe:
+
+```
+------Boundary
+Content-Disposition: form-data; name="file"; filename="docs/1.txt"
+Content-Type: text/plain
+
+[DATA]
+------Boundary
+Content-Disposition: form-data; name="file"; filename="docs/path/2.txt"
+Content-Type: text/plain
+
+[DATA]
+------Boundary
+Content-Disposition: form-data; name="file"; filename="docs/path/to/3.txt"
+Content-Type: text/plain
+```
 
 ## Recommended `input` attributes
 

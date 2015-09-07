@@ -16,11 +16,11 @@
         node.addEventListener("change", function (event) {
           if (!event.target.files || !event.target.files.length) return;
           if ("getFilesAndDirectories" in event.target) {
-            newDirectoryApi(event.target, cb);
+            newDirectoryApi(event.target, cb.bind(null, event));
           } else if ("webkitRelativePath" in event.target.files[0]) {
-            oldDirectoryApi(event.target, cb);
+            oldDirectoryApi(event.target, cb.bind(null, event));
           } else {
-            multipleApi(event.target, cb);
+            multipleApi(event.target, cb.bind(null, event));
           }
         });
       } else {
@@ -31,9 +31,9 @@
           event.preventDefault();
           var dataTransfer = event.dataTransfer;
           if ("getFilesAndDirectories" in dataTransfer) {
-            newDirectoryApi(dataTransfer, cb);
+            newDirectoryApi(dataTransfer, cb.bind(null, event));
           } else if (dataTransfer.items) {
-            oldDropApi(dataTransfer.items, cb);
+            oldDropApi(dataTransfer.items, cb.bind(null, event));
           }
         });
       }
