@@ -47,8 +47,10 @@ The callback receives
 
 #### FormData format
 
-`name` will always be `'file'`, `filename` will be the full path to the file, with `/` used as path separator. Does not include a leading slash. Here's aan exampe:
+- `name` will always be `'file'`
+- `filename` will be the full path to the file, with `/` used as path separator. Does not include a leading slash
 
+Here's an example:
 ```
 ------Boundary
 Content-Disposition: form-data; name="file"; filename="docs/1.txt"
