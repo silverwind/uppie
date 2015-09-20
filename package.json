@@ -5,13 +5,6 @@
   "author": "silverwind",
   "license": "BSD-2-Clause",
   "repository": "silverwind/uppie",
-  "scripts": {
-    "min": "uglifyjs uppie.js -o uppie.min.js --mangle --compress --screw-ie8 --unsafe --comments '/uppie/' && wc -c uppie.min.js",
-    "lint": "echo $PWD;eslint --color --quiet --ignore-pattern *.min.js .",
-    "patch": "npm run lint && npm run min && npm version patch && npm publish && git push --follow-tags",
-    "minor": "npm run lint && npm run min && npm version minor && npm publish && git push --follow-tags",
-    "major": "npm run lint && npm run min && npm version major && npm publish && git push --follow-tags"
-  },
   "keywords": [
     "directory",
     "upload",
