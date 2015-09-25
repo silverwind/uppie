@@ -1,5 +1,5 @@
 /*! uppie | (c) 2015 silverwind | BSD license */
-/* eslint-env browser, commonjs, amd */
+/* eslint-env commonjs, amd */
 (function(m) {
   if (typeof exports === "object" && typeof module === "object")
     module.exports = m();
@@ -48,11 +48,11 @@
       var promises = [];
       entries.forEach(function(entry) {
         promises.push(new Promise(function(resolve) {
-          if ("getFilesAndDirectories" in entry) { // it's a directory
+          if ("getFilesAndDirectories" in entry) {
             entry.getFilesAndDirectories().then(function(entries) {
               iterate(entries, entry.path + entry.name + "/", resolve);
             });
-          } else { // it's a file
+          } else {
             if (entry.name) {
               var p = (path + entry.name).replace(/^\//, "");
               fd.append("file", entry, p);
