@@ -35,6 +35,8 @@
             newDirectoryApi(dataTransfer, cb.bind(null, event));
           } else if (dataTransfer.items) {
             oldDropApi(dataTransfer.items, cb.bind(null, event));
+          } else if (dataTransfer.files) {
+            multipleApi(dataTransfer, cb.bind(null, event));
           }
         });
       }
