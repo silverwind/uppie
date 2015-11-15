@@ -111,7 +111,7 @@
 
     function readDirectory(entry, path, resolve) {
       if (!path) path = entry.name;
-      readEntries(entry, undefined, undefined, function(entries) {
+      readEntries(entry, 0, 0, function(entries) {
         var promises = [];
         entries.forEach(function(entry) {
           promises.push(new Promise(function(resolve) {
