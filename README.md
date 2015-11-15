@@ -30,9 +30,8 @@ Browser support for directory upload is pretty much WIP. You can still use uppie
 |---------|----------------------------|------------------------------|
 | Firefox | yes (42+)                  | yes (42+, in multiprocess)   |
 | Chrome  | yes (29+)                  | yes (29+)                    |
-| Edge    | no (as of build 10532)     | no (as of build 10532)       |
+| Edge    | yes (13+)                  | no                           |
 | Safari  | no                         | no                           |
-
 
 ## API
 ### uppie(node, callback)

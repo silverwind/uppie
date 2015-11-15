@@ -16,8 +16,9 @@
           if ("getFilesAndDirectories" in event.target) {
             newDirectoryApi(event.target, cb.bind(null, event));
           } else {
-            if (!event.target.files || !event.target.files.length) return;
-            if ("webkitRelativePath" in event.target.files[0]) {
+            if (!event.target.files || !event.target.files.length) {
+              cb(event);
+            } else if ("webkitRelativePath" in event.target.files[0]) {
               oldDirectoryApi(event.target, cb.bind(null, event));
             } else {
               multipleApi(event.target, cb.bind(null, event));
@@ -30,13 +31,15 @@
         node.addEventListener("dragenter", stop);
         node.addEventListener("drop", function(event) {
           event.preventDefault();
-          var dataTransfer = event.dataTransfer;
-          if ("getFilesAndDirectories" in dataTransfer) {
-            newDirectoryApi(dataTransfer, cb.bind(null, event));
-          } else if (dataTransfer.items) {
-            oldDropApi(dataTransfer.items, cb.bind(null, event));
-          } else if (dataTransfer.files) {
-            multipleApi(dataTransfer, cb.bind(null, event));
+          var dt = event.dataTransfer;
+          if ("getFilesAndDirectories" in dt) {
+            newDirectoryApi(dt, cb.bind(null, event));
+          } else if (dt.items && dt.items.length && "webkitGetAsEntry" in dt.items[0]) {
+            entriesApi(dt.items, cb.bind(null, event));
+          } else if (dt.files) {
+            multipleApi(dt, cb.bind(null, event));
+          } else {
+            cb(event);
           }
         });
       }
@@ -94,7 +97,7 @@
   }
 
   // old drag and drop API implemented in Chrome 11+
-  function oldDropApi(items, cb) {
+  function entriesApi(items, cb) {
     var fd = new FormData(), files = [], rootPromises = [];
 
     function readEntries(entry, reader, oldEntries, cb) {
