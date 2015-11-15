@@ -56,7 +56,7 @@
             });
           } else {
             if (entry.name) {
-              var p = (path + entry.name).replace(/^\//, "");
+              var p = (path + entry.name).replace(/^[\/\\]/, "");
               fd.append("file", entry, p);
               files.push(p);
             }
