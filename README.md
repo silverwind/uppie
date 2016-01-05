@@ -36,7 +36,7 @@ Browser support for directory upload is pretty much WIP. You can still use uppie
 ## API
 ### uppie(node, callback)
 - `node` *Node*: A DOM node. If a `<input type="file">` is given, uppie will monitor it for `change` events. Any other element type will be enabled as a dropzone and watched for `drop` events. If you want to use both on the same element, use a hidden `<input>` and forward the click event.
-- `callback` *function*: callback which is called every time the selected files change or when files are dropped in the dropzone.
+- `callback` *Function*: callback which is called every time the selected files change or when files are dropped in the dropzone.
 
 The callback receives
 
