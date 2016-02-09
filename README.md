@@ -3,9 +3,7 @@
 
 uppie is a tiny library (less than 1 KiB gzipped) which wraps all current implementations of directory and multi-file uploading into a simple function and delivers a `FormData` object to be summitted through XHR2.
 
-Both the `<input>` element and drag and drop are supported. The minimum required browsers for directory uploads are Chrome 29+ and Firefox 42+. Edge will eventually support this, but does not as of build 10532.
-
-You can lower the browser requirements by providing a `Promise` polyfill, at which point your limiting factor will be [XHR2 support](http://caniuse.com/#feat=xhr2).
+Both the `<input>` element and drag and drop are supported. The minimum required browsers for directory uploads are Chrome 29+ and Firefox Nightly 42+. Microsoft Edge plans to support it as well in the near future. Chrome 11 and above can be supported by providing a `Promise` polyfill, at which point the limiting factor will be [XHR2 support](http://caniuse.com/#feat=xhr2).
 
 ## Example
 ```html
@@ -24,11 +22,11 @@ uppie(document.querySelector('#file-input'), function (event, formData, files) {
 
 ## Browser support
 
-Browser support for directory upload is pretty much WIP. You can still use uppie for single or multi-file uploads in browsers that don't support directories yet.
+Browser support for directory upload is currently limited, thought, uppie can still be used for single or multi-file uploads in browsers that don't support directories yet.
 
 |         | directories in input[file] | directories in drag and drop |
 |---------|----------------------------|------------------------------|
-| Firefox | yes (42+)                  | yes (42+, in multiprocess)   |
+| Firefox | yes (42+ Nightly)          | yes (42+ Nightly)            |
 | Chrome  | yes (29+)                  | yes (29+)                    |
 | Edge    | yes (13+)                  | no                           |
 | Safari  | no                         | no                           |
