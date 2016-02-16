@@ -1,7 +1,7 @@
 # uppie [![NPM version](https://img.shields.io/npm/v/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie) [![Dependency Status](http://img.shields.io/david/silverwind/uppie.svg?style=flat)](https://david-dm.org/silverwind/uppie) [![Downloads per month](http://img.shields.io/npm/dm/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie)
 > Cross-browser directory uploads made easy
 
-uppie is a tiny library (less than 1 KiB gzipped) which wraps all current implementations of directory and multi-file uploading into a simple function and delivers a `FormData` object to be summitted through XHR2.
+`uppie` is a tiny library (less than 1 KiB gzipped) which wraps all current implementations of [directory and multi-file uploading](https://wicg.github.io/directory-upload/proposal.html) into a simple function and delivers a `FormData` object to be summitted through XHR2.
 
 Both the `<input>` element and drag and drop are supported. The minimum required browsers for directory uploads are Chrome 29+ and Firefox Nightly 42+. Microsoft Edge plans to support it as well in the near future. Chrome 11 and above can be supported by providing a `Promise` polyfill, at which point the limiting factor will be [XHR2 support](http://caniuse.com/#feat=xhr2).
 
@@ -22,7 +22,7 @@ uppie(document.querySelector('#file-input'), function (event, formData, files) {
 
 ## Browser support
 
-Browser support for directory upload is currently limited, thought, uppie can still be used for single or multi-file uploads in browsers that don't support directories yet.
+Browser support for directory upload is currently limited. Thought, `uppie` can still be used for single or multi-file uploads in browsers that don't support directories yet.
 
 |         | directories in input[file] | directories in drag and drop |
 |---------|----------------------------|------------------------------|
