@@ -22,7 +22,7 @@ uppie(document.querySelector('#file-input'), function (event, formData, files) {
 
 ## Browser support
 
-Browser support for directory upload is currently limited. Thought, `uppie` can still be used for single or multi-file uploads in browsers that don't support directories yet.
+Browser support for the new directory upload spec is WIP on both Firefox and Edge. Despite that, `uppie` can still be used for single or multi-file uploads on unsupporting browsers.
 
 |            | directories in input[file] | directories in drag and drop |
 |------------|----------------------------|------------------------------|
@@ -31,7 +31,7 @@ Browser support for directory upload is currently limited. Thought, `uppie` can 
 | Edge       | yes (13+)                  | no                           |
 | Safari     | no                         | no                           |
 
-- \* Needs `dom.input.dirpicker` enabled in `about:config`.
+\* Needs `dom.input.dirpicker` enabled in `about:config`.
 
 ## API
 ### uppie(node, callback)
