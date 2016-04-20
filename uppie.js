@@ -55,7 +55,7 @@
         promises.push(new Promise(function(resolve) {
           if ("getFilesAndDirectories" in entry) {
             entry.getFilesAndDirectories().then(function(entries) {
-              iterate(entries, entry.path + entry.name + "/", resolve);
+              iterate(entries, entry.path + "/", resolve);
             });
           } else {
             if (entry.name) {
@@ -120,8 +120,9 @@
           promises.push(new Promise(function(resolve) {
             if (entry.isFile) {
               entry.file(function(file) {
-                fd.append("file", file, path + "/" + file.name);
-                files.push(path + "/" + file.name);
+                var p = path + "/" + file.name;
+                fd.append("file", file, p);
+                files.push(p);
                 resolve();
               }, resolve.bind());
             } else readDirectory(entry, path + "/" + entry.name, resolve);

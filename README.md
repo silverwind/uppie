@@ -24,12 +24,14 @@ uppie(document.querySelector('#file-input'), function (event, formData, files) {
 
 Browser support for directory upload is currently limited. Thought, `uppie` can still be used for single or multi-file uploads in browsers that don't support directories yet.
 
-|         | directories in input[file] | directories in drag and drop |
-|---------|----------------------------|------------------------------|
-| Firefox | yes (42+ Nightly)          | yes (42+ Nightly)            |
-| Chrome  | yes (29+)                  | yes (29+)                    |
-| Edge    | yes (13+)                  | no                           |
-| Safari  | no                         | no                           |
+|            | directories in input[file] | directories in drag and drop |
+|------------|----------------------------|------------------------------|
+| Firefox \* | yes (42+)                  | yes (42+)                    |
+| Chrome     | yes (29+)                  | yes (29+)                    |
+| Edge       | yes (13+)                  | no                           |
+| Safari     | no                         | no                           |
+
+- \* Needs `dom.input.dirpicker` enabled in `about:config`.
 
 ## API
 ### uppie(node, callback)
@@ -46,7 +48,6 @@ The callback receives
 
 - `name` will always be `'file'`.
 - `filename` will be the full path to the file, with `/` used as path separator. Does not include a leading slash.
-
 Here's an example:
 ```
 ------Boundary
