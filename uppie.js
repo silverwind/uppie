@@ -1,4 +1,4 @@
-/*! uppie | (c) 2015 silverwind | BSD license */
+/*! uppie | (c) silverwind | BSD license */
 /* eslint-env commonjs, amd */
 (function(m) {
   if (typeof exports === "object" && typeof module === "object")
