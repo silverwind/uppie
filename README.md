@@ -3,7 +3,7 @@
 
 `uppie` is a tiny library (less than 1 KiB gzipped) which wraps all current implementations of [directory and multi-file uploading](https://wicg.github.io/directory-upload/proposal.html) into a simple function and delivers a `FormData` object to be summitted through XHR2.
 
-Both the `<input>` element and drag and drop are supported. The minimum required browsers for directory uploads are Chrome 29+ and Firefox Nightly 42+. Microsoft Edge plans to support it as well in the near future. Chrome 11 and above can be supported by providing a `Promise` polyfill, at which point the limiting factor will be [XHR2 support](http://caniuse.com/#feat=xhr2).
+Both the `<input>` element and drag and drop are supported. The minimum required browsers for directory uploads are Chrome 29+ and Firefox 42+ (with `dom.input.dirpicker` set to `true` in `about:config`). Microsoft Edge will also support it in the near future. Chrome 11 and above can be supported by providing a `Promise` polyfill, at which point the limiting factor will be [XHR2 support](http://caniuse.com/#feat=xhr2).
 
 ## Example
 ```html
@@ -31,7 +31,7 @@ Browser support for the new directory upload spec is WIP on both Firefox and Edg
 | Edge       | yes (13+)                  | no                           |
 | Safari     | no                         | no                           |
 
-\* Needs `dom.input.dirpicker` enabled in `about:config`.
+\* Needs `dom.input.dirpicker` set to `true` in `about:config`.
 
 ## API
 ### uppie(node, callback)
@@ -46,7 +46,7 @@ The callback receives
 
 #### FormData format
 
-- `name` will always be `'file'`.
+- `name` will always be `"file"`.
 - `filename` will be the full path to the file, with `/` used as path separator. Does not include a leading slash.
 Here's an example:
 ```
