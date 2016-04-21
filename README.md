@@ -1,9 +1,9 @@
 # uppie [![NPM version](https://img.shields.io/npm/v/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie) [![Dependency Status](http://img.shields.io/david/silverwind/uppie.svg?style=flat)](https://david-dm.org/silverwind/uppie) [![Downloads per month](http://img.shields.io/npm/dm/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie)
 > Cross-browser directory uploads made easy
 
-`uppie` is a tiny library (less than 1 KiB gzipped) which wraps all current implementations of [directory and multi-file uploading](https://wicg.github.io/directory-upload/proposal.html) into a simple function and delivers a `FormData` object to be summitted through XHR2.
+`uppie` is a tiny library (less than 1 KiB gzipped) which wraps all current implementations of [directory uploading](https://wicg.github.io/directory-upload/proposal.html) into a convenient function and delivers a `FormData` object to be summitted through XHR2.
 
-Both the `<input>` element and drag and drop are supported. The minimum required browsers for directory uploads are Chrome 29+ and Firefox 42+ (with `dom.input.dirpicker` set to `true` in `about:config`). Microsoft Edge will also support it in the near future. Chrome 11 and above can be supported by providing a `Promise` polyfill, at which point the limiting factor will be [XHR2 support](http://caniuse.com/#feat=xhr2).
+Both the `<input>` element and drag and drop are supported. The minimum required browsers for directory uploads are Chrome 29+, Firefox 42+ and Edge 13+. Safari does not support any form of directory uploads currently.
 
 ## Example
 ```html
@@ -22,7 +22,7 @@ uppie(document.querySelector('#file-input'), function (event, formData, files) {
 
 ## Browser support
 
-Browser support for the new directory upload spec is WIP on both Firefox and Edge. Despite that, `uppie` can still be used for single or multi-file uploads on unsupporting browsers.
+Browser support for the new API directory upload spec is WIP on Firefox and Edge. Chrome supports an older spec, which is also supported.
 
 |            | directories in input[file] | directories in drag and drop |
 |------------|----------------------------|------------------------------|
@@ -48,6 +48,7 @@ The callback receives
 
 - `name` will always be `"file"`.
 - `filename` will be the full path to the file, with `/` used as path separator. Does not include a leading slash.
+
 Here's an example:
 ```
 ------Boundary
@@ -65,10 +66,10 @@ Content-Disposition: form-data; name="file"; filename="docs/path/to/3.txt"
 Content-Type: text/plain
 ```
 
-## Recommended `input` attributes
+## Recommended `input` element attributes
 
 - `multiple`: to allow multiple files to be selected.
-- `directory`: to enable directory upload in Firefox (42+) and Edge (soon).
-- `webkitdirectory`: to enable directory upload in Chrome (29+).
+- `directory`: to enable directory uploads in Firefox and Edge.
+- `webkitdirectory`: to enable directory uploads in Chrome.
 
 © 2015 [silverwind](https://github.com/silverwind), distributed under BSD licence
