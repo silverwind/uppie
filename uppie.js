@@ -32,14 +32,15 @@
         node.addEventListener("drop", function(event) {
           event.preventDefault();
           var dt = event.dataTransfer;
+          cb = cb.bind(null, event);
           if ("getFilesAndDirectories" in dt) {
-            newDirectoryApi(dt, cb.bind(null, event));
+            newDirectoryApi(dt, cb);
           } else if (dt.items && dt.items.length && "webkitGetAsEntry" in dt.items[0]) {
-            entriesApi(dt.items, cb.bind(null, event));
+            entriesApi(dt.items, cb);
           } else if (dt.files) {
-            multipleApi(dt, cb.bind(null, event));
+            multipleApi(dt, cb);
           } else {
-            cb(event);
+            cb();
           }
         });
       }
