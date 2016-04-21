@@ -36,7 +36,7 @@ Browser support for the new API directory upload spec is WIP on Firefox and Edge
 ## Caveats
 
 - Empty directories are excluded from the results by all browsers as dictated by the spec.
-- Firefox currently does excludes files and directories starting with a `.`, see [bug 1266531](https://bugzilla.mozilla.org/show_bug.cgi?id=1266531).
+- Firefox currently excludes files and directories starting with a `.`, see [bug 1266531](https://bugzilla.mozilla.org/show_bug.cgi?id=1266531).
 
 ## API
 ### uppie(node, callback)
