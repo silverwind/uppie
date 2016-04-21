@@ -33,6 +33,11 @@ Browser support for the new API directory upload spec is WIP on Firefox and Edge
 
 \* Needs `dom.input.dirpicker` set to `true` in `about:config`.
 
+## Caveats
+
+- Empty directories are excluded from the results by all browsers as dictated by the spec.
+- Firefox currently does excludes files and directories starting with a `.`, see [bug 1266531](https://bugzilla.mozilla.org/show_bug.cgi?id=1266531).
+
 ## API
 ### uppie(node, callback)
 - `node` *Node*: A DOM node. If a `<input type="file">` is given, uppie will monitor it for `change` events. Any other element type will be enabled as a dropzone and watched for `drop` events. If you want to use both on the same element, use a hidden `<input>` and forward the click event.
