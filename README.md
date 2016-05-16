@@ -1,9 +1,11 @@
 # uppie [![NPM version](https://img.shields.io/npm/v/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie) [![Dependency Status](http://img.shields.io/david/silverwind/uppie.svg?style=flat)](https://david-dm.org/silverwind/uppie) [![Downloads per month](http://img.shields.io/npm/dm/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie)
 > Cross-browser directory uploads made easy
 
-`uppie` is a tiny library (less than 1 KiB gzipped) which wraps all current implementations of [directory uploading](https://wicg.github.io/directory-upload/proposal.html) into a convenient function and delivers a `FormData` object to be summitted through XHR2.
+`uppie` is a tiny library which wraps all current implementations of [directory uploading](https://wicg.github.io/directory-upload/proposal.html) into a convenient function and delivers a `FormData` object to be summitted through XHR2.
 
 Both the `<input>` element and drag and drop are supported. The minimum required browsers for directory uploads are Chrome 29+, Firefox 42+ and Edge 13+. Safari does not support any form of directory uploads currently.
+
+`uppie` currently weights 893 bytes gzipped.
 
 ## Example
 ```html
