@@ -79,4 +79,4 @@ Content-Type: text/plain
 - `directory`: to enable directory uploads in Firefox and Edge.
 - `webkitdirectory`: to enable directory uploads in Chrome.
 
-© 2015 [silverwind](https://github.com/silverwind), distributed under BSD licence
+© [silverwind](https://github.com/silverwind), distributed under BSD licence
