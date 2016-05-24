@@ -32,13 +32,12 @@
         node.addEventListener("drop", function(event) {
           event.preventDefault();
           var dt = event.dataTransfer;
-          cb = cb.bind(null, event);
           if ("getFilesAndDirectories" in dt) {
-            newDirectoryApi(dt, cb);
+            newDirectoryApi(dt, cb.bind(null, event));
           } else if (dt.items && dt.items.length && "webkitGetAsEntry" in dt.items[0]) {
-            entriesApi(dt.items, cb);
+            entriesApi(dt.items, cb.bind(null, event));
           } else if (dt.files) {
-            multipleApi(dt, cb);
+            multipleApi(dt, cb.bind(null, event));
           } else {
             cb();
           }
@@ -68,7 +67,7 @@
           }
         }));
       });
-      Promise.all(promises).then(resolve.bind());
+      Promise.all(promises).then(resolve);
     };
     input.getFilesAndDirectories().then(function(entries) {
       new Promise(function(resolve) {
