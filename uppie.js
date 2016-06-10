@@ -18,11 +18,7 @@
           } else {
             if (!event.target.files || !event.target.files.length) {
               cb(event);
-            } else if ("webkitRelativePath" in event.target.files[0]) {
-              oldDirectoryApi(event.target, cb.bind(null, event));
-            } else {
-              multipleApi(event.target, cb.bind(null, event));
-            }
+            } else arrayApi(event.target, cb.bind(null, event));
           }
         });
       } else {
@@ -37,10 +33,8 @@
           } else if (dt.items && dt.items.length && "webkitGetAsEntry" in dt.items[0]) {
             entriesApi(dt.items, cb.bind(null, event));
           } else if (dt.files) {
-            multipleApi(dt, cb.bind(null, event));
-          } else {
-            cb();
-          }
+            arrayApi(dt, cb.bind(null, event));
+          } else cb();
         });
       }
     };
@@ -76,22 +70,12 @@
     });
   }
 
-  // old prefixed API implemented in Chrome 11+
-  function oldDirectoryApi(input, cb) {
+  // old prefixed API implemented in Chrome 11+ as well as array fallback
+  function arrayApi(input, cb) {
     var fd = new FormData(), files = [];
     [].slice.call(input.files).forEach(function(file) {
       fd.append("file", file, file.webkitRelativePath || file.name);
       files.push(file.webkitRelativePath || file.name);
-    });
-    cb(fd, files);
-  }
-
-  // fallback for files without directories
-  function multipleApi(input, cb) {
-    var fd = new FormData(), files = [];
-    [].slice.call(input.files).forEach(function(file) {
-      fd.append("file", file, file.name);
-      files.push(file.name);
     });
     cb(fd, files);
   }
