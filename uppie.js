@@ -42,18 +42,20 @@
 
   // API implemented in Firefox 42+ and Edge
   function newDirectoryApi(input, cb) {
-    var fd = new FormData();
+    var fd = new FormData(), files = [];
     var iterate = function(entries, path, resolve) {
       var promises = [];
       entries.forEach(function(entry) {
         promises.push(new Promise(function(resolve) {
           if ("getFilesAndDirectories" in entry) {
             entry.getFilesAndDirectories().then(function(entries) {
-              iterate(entries, entry.path, resolve);
+              iterate(entries, entry.path + "/", resolve);
             });
           } else {
             if (entry.name) {
-              fd.append("file", entry, (path + "/" + entry.name).replace(/^[\/\\]/, ""));
+              var p = (path + entry.name).replace(/^[\/\\]/, "");
+              fd.append("file", entry, p);
+              files.push(p);
             }
             resolve();
           }
@@ -64,22 +66,23 @@
     input.getFilesAndDirectories().then(function(entries) {
       new Promise(function(resolve) {
         iterate(entries, "/", resolve);
-      }).then(cb.bind(null, fd));
+      }).then(cb.bind(null, fd, files));
     });
   }
 
   // old prefixed API implemented in Chrome 11+ as well as array fallback
   function arrayApi(input, cb) {
-    var fd = new FormData();
+    var fd = new FormData(), files = [];
     [].slice.call(input.files).forEach(function(file) {
       fd.append("file", file, file.webkitRelativePath || file.name);
+      files.push(file.webkitRelativePath || file.name);
     });
-    cb(fd);
+    cb(fd, files);
   }
 
   // old drag and drop API implemented in Chrome 11+
   function entriesApi(items, cb) {
-    var fd = new FormData(), rootPromises = [];
+    var fd = new FormData(), files = [], rootPromises = [];
 
     function readEntries(entry, reader, oldEntries, cb) {
       var dirReader = reader || entry.createReader();
@@ -101,7 +104,9 @@
           promises.push(new Promise(function(resolve) {
             if (entry.isFile) {
               entry.file(function(file) {
-                fd.append("file", file, path + "/" + file.name);
+                var p = path + "/" + file.name;
+                fd.append("file", file, p);
+                files.push(p);
                 resolve();
               }, resolve.bind());
             } else readDirectory(entry, path + "/" + entry.name, resolve);
@@ -118,6 +123,7 @@
           if (entry.isFile) {
             entry.file(function(file) {
               fd.append("file", file, file.name);
+              files.push(file.name);
               resolve();
             }, resolve.bind());
           } else if (entry.isDirectory) {
@@ -126,6 +132,6 @@
         }));
       }
     });
-    Promise.all(rootPromises).then(cb.bind(null, fd));
+    Promise.all(rootPromises).then(cb.bind(null, fd, files));
   }
 });
