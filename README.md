@@ -15,7 +15,7 @@ Both the `<input>` element and drag and drop are supported. The minimum required
 ```js
 var uppie = new Uppie();
 
-uppie(document.querySelector('#file-input'), function (event, formData, files) {
+uppie(document.querySelector('#file-input'), function (event, formData) {
   var xhr = new XMLHttpRequest();
   xhr.open('POST', '/upload');
   xhr.send(formData);
@@ -48,8 +48,7 @@ Browser support for the new API directory upload spec is WIP on Firefox and Edge
 The callback receives
 
 - `event` *Event*: the original event. Useful for calling `.stopPropagation()`.
-- `formData` *FormData*: FormData object to be used for XHR2 uploading.
-- `files` *Array*: Array of paths for preview purposes.
+- `formData` *FormData*: FormData object. To access individual files, use `formData.getAll('file')`;
 
 #### FormData format
 
