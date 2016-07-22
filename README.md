@@ -75,8 +75,10 @@ Content-Type: text/plain
 
 ## Recommended `input` element attributes
 
-- `multiple`: to allow multiple files to be selected.
-- `directory`: to enable directory uploads in Firefox and Edge.
-- `webkitdirectory`: to enable directory uploads in Chrome.
+- `multiple`: allow multiple files to be selected.
+- `allowdirs`: enable directory uploads in Firefox and Edge.
+- `directory`: enable directory uploads in Firefox and Edge (deprecated).
+- `webkitdirectory`: enable directory uploads in Chrome.
+
 
 © [silverwind](https://github.com/silverwind), distributed under BSD licence
