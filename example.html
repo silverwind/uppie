@@ -5,18 +5,18 @@
   </head>
   <body>
     <p>Drop files on this site, or choose below!</p>
-    <input id="input" type="file" multiple directory webkitdirectory/>
+    <input id="input" type="file" multiple directory webkitdirectory allowdirs/>
     <pre id="output"></pre>
     <script src="uppie.js"></script>
     <script>
       /* used on an input element */
       var uppie = new Uppie();
-      uppie(document.querySelector("#input"), function (event, formData, files) {
+      uppie(document.querySelector("#input"), function(event, formData, files) {
         document.querySelector("#output").textContent = files.join("\n");
       });
       /* used on a dropzone element */
       var uppie = new Uppie();
-      uppie(document.documentElement, function (event, formData, files) {
+      uppie(document.documentElement, function(event, formData, files) {
         document.querySelector("#output").textContent = files.join("\n");
       });
     </script>

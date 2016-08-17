@@ -7,9 +7,9 @@ Both the `<input>` element and drag and drop are supported. The minimum required
 
 `uppie` currently weights 874 bytes gzipped.
 
-## Example
+## Example (also see this [client-only example](https://github.com/silverwind/uppie/blob/master/example.html))
 ```html
-<input type="file" id="file-input" multiple directory webkitdirectory/>
+<input type="file" id="file-input" multiple directory webkitdirectory allowdirs/>
 <script src="uppie.js"></script>
 ```
 ```js
