@@ -28,7 +28,7 @@
         node.addEventListener("drop", function(event) {
           event.preventDefault();
           var dt = event.dataTransfer;
-          if ("getFilesAndDirectories" in dt) {
+          if ("getFilesAndDirectories" in dt && !"webkitGetAsEntry" in dt.items[0]) {
             newDirectoryApi(dt, cb.bind(null, event));
           } else if (dt.items && dt.items.length && "webkitGetAsEntry" in dt.items[0]) {
             entriesApi(dt.items, cb.bind(null, event));
