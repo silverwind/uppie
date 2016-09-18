@@ -5,7 +5,7 @@
 
 Both the `<input>` element and drag and drop are supported. The minimum required browsers for directory uploads are Chrome 29+, Firefox 42+ and Edge 13+. Safari does not support any form of directory uploads currently.
 
-`uppie` currently weights 875 bytes gzipped.
+`uppie` currently weights 885 bytes gzipped.
 
 ## Example (also see this [client-only example](https://github.com/silverwind/uppie/blob/master/example.html))
 ```html
