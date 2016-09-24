@@ -13,12 +13,13 @@
     return function(node, cb) {
       if (node.tagName.toLowerCase() === "input" && node.type === "file") {
         node.addEventListener("change", function(event) {
-          if ("getFilesAndDirectories" in event.target) {
-            newDirectoryApi(event.target, cb.bind(null, event));
+          var t = event.target;
+          if (t.files && t.files.length && "webkitRelativePath" in t.files[0]) {
+            arrayApi(t, cb.bind(null, event));
+          } else if ("getFilesAndDirectories" in t) {
+            newDirectoryApi(t, cb.bind(null, event));
           } else {
-            if (!event.target.files || !event.target.files.length) {
-              cb(event);
-            } else arrayApi(event.target, cb.bind(null, event));
+            cb(event);
           }
         });
       } else {
@@ -28,10 +29,10 @@
         node.addEventListener("drop", function(event) {
           event.preventDefault();
           var dt = event.dataTransfer;
-          if ("getFilesAndDirectories" in dt && !("webkitGetAsEntry" in dt.items[0])) {
-            newDirectoryApi(dt, cb.bind(null, event));
-          } else if (dt.items && dt.items.length && "webkitGetAsEntry" in dt.items[0]) {
+          if (dt.items && dt.items.length && "webkitGetAsEntry" in dt.items[0]) {
             entriesApi(dt.items, cb.bind(null, event));
+          } else if ("getFilesAndDirectories" in dt) {
+            newDirectoryApi(dt, cb.bind(null, event));
           } else if (dt.files) {
             arrayApi(dt, cb.bind(null, event));
           } else cb();
