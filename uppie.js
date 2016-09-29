@@ -1,4 +1,4 @@
-/*! uppie v0.11.6 | (c) silverwind | BSD license */
+/*! uppie v0.11.7 | (c) silverwind | BSD license */
 /* eslint-env commonjs, amd */
 (function(m) {
   if (typeof exports === "object" && typeof module === "object")
@@ -49,7 +49,7 @@
         } else cb();
       });
     }
-  };
+  }
 
   // API implemented in Firefox 42+ and Edge
   function newDirectoryApi(input, cb) {
