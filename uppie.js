@@ -11,34 +11,44 @@
   "use strict";
   return function Uppie() {
     return function(node, cb) {
-      if (node.tagName.toLowerCase() === "input" && node.type === "file") {
-        node.addEventListener("change", function(event) {
-          var t = event.target;
-          if (t.files && t.files.length && "webkitRelativePath" in t.files[0]) {
-            arrayApi(t, cb.bind(null, event));
-          } else if ("getFilesAndDirectories" in t) {
-            newDirectoryApi(t, cb.bind(null, event));
-          } else {
-            cb(event);
-          }
+      if (node instanceof NodeList) {
+        [].slice.call(node).forEach(function(n) {
+          watch(n, cb);
         });
       } else {
-        var stop = function(event) { event.preventDefault(); };
-        node.addEventListener("dragover", stop);
-        node.addEventListener("dragenter", stop);
-        node.addEventListener("drop", function(event) {
-          event.preventDefault();
-          var dt = event.dataTransfer;
-          if (dt.items && dt.items.length && "webkitGetAsEntry" in dt.items[0]) {
-            entriesApi(dt.items, cb.bind(null, event));
-          } else if ("getFilesAndDirectories" in dt) {
-            newDirectoryApi(dt, cb.bind(null, event));
-          } else if (dt.files) {
-            arrayApi(dt, cb.bind(null, event));
-          } else cb();
-        });
+        watch(node, cb);
       }
     };
+  };
+
+  function watch(node, cb) {
+    if (node.tagName.toLowerCase() === "input" && node.type === "file") {
+      node.addEventListener("change", function(event) {
+        var t = event.target;
+        if (t.files && t.files.length && "webkitRelativePath" in t.files[0]) {
+          arrayApi(t, cb.bind(null, event));
+        } else if ("getFilesAndDirectories" in t) {
+          newDirectoryApi(t, cb.bind(null, event));
+        } else {
+          cb(event);
+        }
+      });
+    } else {
+      var stop = function(event) { event.preventDefault(); };
+      node.addEventListener("dragover", stop);
+      node.addEventListener("dragenter", stop);
+      node.addEventListener("drop", function(event) {
+        event.preventDefault();
+        var dt = event.dataTransfer;
+        if (dt.items && dt.items.length && "webkitGetAsEntry" in dt.items[0]) {
+          entriesApi(dt.items, cb.bind(null, event));
+        } else if ("getFilesAndDirectories" in dt) {
+          newDirectoryApi(dt, cb.bind(null, event));
+        } else if (dt.files) {
+          arrayApi(dt, cb.bind(null, event));
+        } else cb();
+      });
+    }
   };
 
   // API implemented in Firefox 42+ and Edge

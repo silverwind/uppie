@@ -7,7 +7,7 @@ Both the `<input>` element and drag and drop are supported. The minimum required
 
 `uppie` currently weights 881 bytes gzipped.
 
-## Example (also see this [client-only example](https://github.com/silverwind/uppie/blob/master/example.html))
+## Example (also see this [demo](https://silverwind.io/uppie/example.html))
 ```html
 <input type="file" id="file-input" multiple directory webkitdirectory allowdirs/>
 <script src="uppie.js"></script>
@@ -42,7 +42,7 @@ Browser support for the new API directory upload spec is WIP on Firefox and Edge
 
 ## API
 ### uppie(node, callback)
-- `node` *Node*: A DOM node. If a `<input type="file">` is given, uppie will monitor it for `change` events. Any other element type will be enabled as a dropzone and watched for `drop` events. If you want to use both on the same element, use a hidden `<input>` and forward the click event.
+- `node` *Node* or *NodeList*: One or more DOM nodes. If a `<input type="file">` is given, uppie will monitor it for `change` events. Any other element type will be enabled as a dropzone and watched for `drop` events. If you want to use both on the same element, use a hidden `<input>` and forward the click event.
 - `callback` *Function*: callback which is called every time the selected files change or when files are dropped in the dropzone.
 
 The callback receives
