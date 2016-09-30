@@ -1,11 +1,7 @@
 # uppie [![NPM version](https://img.shields.io/npm/v/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie) [![Dependency Status](http://img.shields.io/david/silverwind/uppie.svg?style=flat)](https://david-dm.org/silverwind/uppie) [![Downloads per month](http://img.shields.io/npm/dm/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie)
 > Cross-browser directory and multi-file upload library
 
-`uppie` is a tiny library which wraps all current implementations of [directory uploading](https://wicg.github.io/directory-upload/proposal.html) into a convenient function and delivers a `FormData` object to be summitted through XHR2.
-
-Both the `<input>` element and drag and drop are supported. The minimum required browsers for directory uploads are Chrome 29+, Firefox 42+ and Edge 13+. Safari does not support any form of directory uploads currently.
-
-`uppie` currently weights **901 bytes** gzipped.
+`uppie` is a tiny (**901 bytes** gzipped) library which wraps all current implementations of multi-file and directory uploading into a convenient function and delivers a `FormData` object to be summitted asynchronously. Both the `<input>` element and drag-and-drop uploads are supported.
 
 ## Example (also see this [demo](https://silverwind.io/uppie/example.html))
 ```html
@@ -28,12 +24,10 @@ Browser support for the new API directory upload spec is WIP on Firefox and Edge
 
 |            | directories in input[file] | directories in drag and drop |
 |------------|----------------------------|------------------------------|
-| Firefox \* | yes (42+)                  | yes (42+)                    |
+| Firefox    | yes (50+)                  | yes (50+)                    |
 | Chrome     | yes (29+)                  | yes (29+)                    |
 | Edge       | yes (13+)                  | no                           |
 | Safari     | no                         | no                           |
-
-\* Needs `dom.input.dirpicker` set to `true` in `about:config`.
 
 ## Caveats
 
@@ -47,7 +41,7 @@ Browser support for the new API directory upload spec is WIP on Firefox and Edge
 
 The callback receives
 
-- `event` *Event*: the original event. Useful for calling `.stopPropagation()`.
+- `event` *Event*: the original event. Useful for calling `event.stopPropagation()`.
 - `formData` *FormData*: FormData object to be used for XHR2 uploading.
 - `files` *Array*: Array of paths for preview purposes.
 
@@ -75,10 +69,8 @@ Content-Type: text/plain
 
 ## Recommended `input` element attributes
 
-- `multiple`: allow multiple files to be selected.
-- `allowdirs`: enable directory uploads in Firefox and Edge.
-- `directory`: enable directory uploads in Firefox and Edge (deprecated).
-- `webkitdirectory`: enable directory uploads in Chrome.
-
+- `multiple`: allow multiple files (no directories) to be selected.
+- `webkitdirectory`: enable directory uploads in Chrome and Firefox.
+- `allowdirs`: enable experimental directory upload API in Firefox and Edge.
 
 © [silverwind](https://github.com/silverwind), distributed under BSD licence
