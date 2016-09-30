@@ -25,7 +25,7 @@
     if (node.tagName.toLowerCase() === "input" && node.type === "file") {
       node.addEventListener("change", function(event) {
         var t = event.target;
-        if (t.files && t.files.length && "webkitRelativePath" in t.files[0]) {
+        if (t.files && t.files.length) {
           arrayApi(t, cb.bind(null, event));
         } else if ("getFilesAndDirectories" in t) {
           newDirectoryApi(t, cb.bind(null, event));
