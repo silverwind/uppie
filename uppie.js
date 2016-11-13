@@ -1,5 +1,4 @@
 /*! uppie v0.11.8 | (c) silverwind | BSD license */
-/* eslint-env commonjs, amd */
 (function(m) {
   if (typeof exports === "object" && typeof module === "object")
     module.exports = m();
