@@ -1,4 +1,4 @@
-/*! uppie v0.11.9 | (c) silverwind | BSD license */
+/*! uppie v1.0.0 | (c) silverwind | BSD license */
 (function(m) {
   if (typeof exports === "object" && typeof module === "object")
     module.exports = m();
