@@ -47,23 +47,23 @@ The callback receives
 
 #### FormData format
 
-- `name` will always be `"file"`.
+- `name` will always be `"files[]"`.
 - `filename` will be the full path to the file, with `/` used as path separator. Does not include a leading slash.
 
 Here's an example:
 ```
 ------Boundary
-Content-Disposition: form-data; name="file"; filename="docs/1.txt"
+Content-Disposition: form-data; name="files[]"; filename="docs/1.txt"
 Content-Type: text/plain
 
 [DATA]
 ------Boundary
-Content-Disposition: form-data; name="file"; filename="docs/path/2.txt"
+Content-Disposition: form-data; name="files[]"; filename="docs/path/2.txt"
 Content-Type: text/plain
 
 [DATA]
 ------Boundary
-Content-Disposition: form-data; name="file"; filename="docs/path/to/3.txt"
+Content-Disposition: form-data; name="files[]"; filename="docs/path/to/3.txt"
 Content-Type: text/plain
 ```
 

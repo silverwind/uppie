@@ -20,16 +20,18 @@
     <pre class="output"></pre>
     <script src="uppie.js"></script>
     <script>
-      /* used on an input element */
       var uppie = new Uppie();
+
+      /* used on an input element */
       uppie(document.querySelectorAll(".input"), function(event, formData, files) {
         document.querySelector(".output").textContent = files.join("\n");
       });
+
       /* used on a dropzone element */
-      var uppie = new Uppie();
       uppie(document.documentElement, function(event, formData, files) {
         document.querySelector(".output").textContent = files.join("\n");
       });
+
     </script>
   </body>
 </html>

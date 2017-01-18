@@ -64,7 +64,7 @@
           } else {
             if (entry.name) {
               var p = (path + entry.name).replace(/^[/\\]/, "");
-              fd.append("file", entry, p);
+              fd.append("files[]", entry, p);
               files.push(p);
             }
             resolve();
@@ -84,7 +84,7 @@
   function arrayApi(input, cb) {
     var fd = new FormData(), files = [];
     [].slice.call(input.files).forEach(function(file) {
-      fd.append("file", file, file.webkitRelativePath || file.name);
+      fd.append("files[]", file, file.webkitRelativePath || file.name);
       files.push(file.webkitRelativePath || file.name);
     });
     cb(fd, files);
@@ -115,7 +115,7 @@
             if (entry.isFile) {
               entry.file(function(file) {
                 var p = path + "/" + file.name;
-                fd.append("file", file, p);
+                fd.append("files[]", file, p);
                 files.push(p);
                 resolve();
               }, resolve.bind());
@@ -132,7 +132,7 @@
         rootPromises.push(new Promise(function(resolve) {
           if (entry.isFile) {
             entry.file(function(file) {
-              fd.append("file", file, file.name);
+              fd.append("files[]", file, file.name);
               files.push(file.name);
               resolve();
             }, resolve.bind());
