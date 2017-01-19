@@ -73,4 +73,38 @@ Content-Type: text/plain
 - `webkitdirectory`: enable directory uploads in Chrome and Firefox.
 - `allowdirs`: enable experimental directory upload API in Firefox and Edge.
 
+## PHP example
+
+Because PHP (as of 7.0) does not parse the path from the `filename` field, it is necessary to submit the path through other means. One elegant way to do so is to submit the paths as separate FormData fields like this:
+
+````js
+var uppie = new Uppie();
+uppie(document.documentElement, function(event, formData, files) {
+  Array.prototype.forEach.call(files, function(f) {
+    formData.append("paths[]", f);
+  });
+
+  var xhr = new XMLHttpRequest();
+  xhr.open('POST', 'upload.php');
+  xhr.send(formData);
+});
+````
+And in `upload.php`:
+````php
+foreach ($_FILES['files']['name'] as $i => $name) {
+  if (strlen($_FILES['files']['name'][$i]) > 1) {
+    $fullpath = strip_tags($_POST['paths'][$i]);
+    $path = dirname($fullpath);
+
+    if (!is_dir('uploads/'.$path)){
+      mkdir('uploads/'.$path);
+    }
+    if (move_uploaded_file($_FILES['files']['tmp_name'][$i], 'uploads/'.$fullpath)) {
+        echo '<li>'.$name.'</li>';
+    }
+  }
+}
+````
+Note that PHP's [upload limits](http://php.net/manual/en/ini.core.php#ini.sect.file-uploads) might need to be raised depending on use case.
+
 © [silverwind](https://github.com/silverwind), distributed under BSD licence
