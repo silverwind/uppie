@@ -75,7 +75,7 @@ Content-Type: text/plain
 
 ## PHP example
 
-Because PHP (as of 7.0) does not parse the path from the `filename` field, it is necessary to submit the path through other means. One elegant way to do so is to submit the paths as separate FormData fields like this:
+Because PHP (as of 7.0) does not parse the path from the `filename` field, so it is necessary to submit the path through other means. One elegant way to do so is to submit it as separate FormData fields like this:
 
 ````js
 var uppie = new Uppie();
