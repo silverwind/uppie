@@ -2,7 +2,7 @@
 [![](https://img.shields.io/npm/v/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie) [![](https://img.shields.io/npm/dm/uppie.svg)](https://www.npmjs.org/package/uppie) [![](https://api.travis-ci.org/silverwind/uppie.svg?style=flat)](https://travis-ci.org/silverwind/uppie)
 > Cross-browser directory and multi-file upload library
 
-`uppie` is a tiny (**902 bytes** gzipped) library which wraps all current implementations of multi-file and directory uploading into a convenient function and delivers a `FormData` object to be summitted asynchronously. Both the `<input>` element and drag-and-drop uploads are supported.
+`uppie` is a tiny (**902 B bytes** gzipped) library which wraps all current implementations of multi-file and directory uploading into a convenient function and delivers a `FormData` object to be summitted asynchronously. Both the `<input>` element and drag-and-drop uploads are supported.
 
 ## Example (also see this [demo](https://silverwind.io/uppie/example.html))
 ```html
