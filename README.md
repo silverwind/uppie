@@ -27,7 +27,7 @@ Browser support for the new API directory upload spec is WIP on Firefox and Edge
 |------------|----------------------------|------------------------------|
 | Firefox    | yes (50+)                  | yes (50+)                    |
 | Chrome     | yes (29+)                  | yes (29+)                    |
-| Edge       | yes (13+)                  | no                           |
+| Edge       | yes (13+)                  | yes (14+)                    |
 | Safari     | no                         | no                           |
 
 ## Caveats
