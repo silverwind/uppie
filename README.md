@@ -21,8 +21,6 @@ uppie(document.querySelector('#file-input'), function (event, formData, files) {
 
 ## Browser support
 
-Browser support for the new API directory upload spec is WIP on Firefox and Edge. Chrome supports an older spec, which is also supported.
-
 |            | directories in input[file] | directories in drag and drop |
 |------------|----------------------------|------------------------------|
 | Firefox    | yes (50+)                  | yes (50+)                    |
