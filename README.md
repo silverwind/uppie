@@ -1,8 +1,8 @@
 # uppie
 [![](https://img.shields.io/npm/v/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie) [![](https://img.shields.io/npm/dm/uppie.svg)](https://www.npmjs.org/package/uppie) [![](https://api.travis-ci.org/silverwind/uppie.svg?style=flat)](https://travis-ci.org/silverwind/uppie)
-> Cross-browser directory and multi-file upload library
+> Cross-browser file and directory and upload library
 
-`uppie` is a tiny (**903 bytes** gzipped) library which wraps all current implementations of multi-file and directory uploading into a convenient function and delivers a `FormData` object to be summitted asynchronously. Both the `<input>` element and drag-and-drop uploads are supported.
+`uppie` is a tiny library (903 bytes gzipped) which helps you with file and directory uploads in browsers. It supports all current and past implementations of multi-file and directory uploads and provides you with a `FormData` object you can submit directly to a server through either `XMLHttpRequest` or `fetch`. Both the `<input type="file">` element and drag-and-drop are supported.
 
 ## Example (also see this [demo](https://silverwind.io/uppie/example.html))
 ```html
@@ -21,17 +21,18 @@ uppie(document.querySelector('#file-input'), function (event, formData, files) {
 
 ## Browser support
 
-|            | directories in input[file] | directories in drag and drop |
-|------------|----------------------------|------------------------------|
-| Firefox    | yes (50+)                  | yes (50+)                    |
-| Chrome     | yes (29+)                  | yes (29+)                    |
-| Edge       | yes (13+)                  | yes (14+)                    |
-| Safari     | no                         | no                           |
+|            | files in    | files via      | directories in  | directories via |
+|            | input[file] | drag and drop  | input[file]     | drag and drop   |
+|------------|------------ |----------------|-----------------|-----------------|
+| Firefox    | yes         | yes            | yes (50+)       | yes (50+)       |
+| Chrome     | yes         | yes            | yes (29+)       | yes (29+)       |
+| Edge       | yes         | yes            | yes (13+)       | yes (14+)       |
+| Safari     | yes         | yes            | no              | no              |
 
-## Caveats
+## Notes
 
 - Empty directories are excluded from the results by all browsers as dictated by the spec.
-- Firefox currently excludes files and directories starting with a `.`, see [bug 1266531](https://bugzilla.mozilla.org/show_bug.cgi?id=1266531).
+- Some browsers may excludes files and directories starting with a `.`.
 
 ## API
 ### uppie(node, callback)
@@ -46,10 +47,8 @@ The callback receives
 
 #### FormData format
 
-- `name` will always be `"files[]"`.
-- `filename` will be the full path to the file, with `/` used as path separator. Does not include a leading slash.
+`name` will always be `"files[]"`, `filename` will be the full path to the file, with `/` used as path separator. Does not include a leading slash. Here's an example:
 
-Here's an example:
 ```
 ------Boundary
 Content-Disposition: form-data; name="files[]"; filename="docs/1.txt"
@@ -68,7 +67,7 @@ Content-Type: text/plain
 
 ## Recommended `input` element attributes
 
-- `multiple`: allow multiple files (no directories) to be selected.
+- `multiple`: allow multiple files to be selected.
 - `webkitdirectory`: enable directory uploads in Chrome and Firefox.
 - `allowdirs`: enable experimental directory upload API in Firefox and Edge.
 
@@ -104,6 +103,7 @@ foreach ($_FILES['files']['name'] as $i => $name) {
   }
 }
 ````
+
 Note that PHP's [upload limits](http://php.net/manual/en/ini.core.php#ini.sect.file-uploads) might need to be raised depending on use case.
 
 © [silverwind](https://github.com/silverwind), distributed under BSD licence
