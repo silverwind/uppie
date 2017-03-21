@@ -21,13 +21,12 @@ uppie(document.querySelector('#file-input'), function (event, formData, files) {
 
 ## Browser support
 
-|            | files in    | files via      | directories in  | directories via |
-|            | input[file] | drag and drop  | input[file]     | drag and drop   |
-|------------|------------ |----------------|-----------------|-----------------|
-| Firefox    | yes         | yes            | yes (50+)       | yes (50+)       |
-| Chrome     | yes         | yes            | yes (29+)       | yes (29+)       |
-| Edge       | yes         | yes            | yes (13+)       | yes (14+)       |
-| Safari     | yes         | yes            | no              | no              |
+|         | files via input[file] | files via DnD | dirs via input[file] | dirs via DnD |
+|---------|---------------------- |---------------|----------------------|--------------|
+| Firefox | yes                   | yes           | yes (50+)            | yes (50+)    |
+| Chrome  | yes                   | yes           | yes (29+)            | yes (29+)    |
+| Edge    | yes                   | yes           | yes (13+)            | yes (14+)    |
+| Safari  | yes                   | yes           | no                   | no           |
 
 ## Notes
 
