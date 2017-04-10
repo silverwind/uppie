@@ -21,7 +21,7 @@ uppie(document.querySelector('#file-input'), function (event, formData, files) {
 
 ## Browser support
 
-|         | files via input[file] | files via DnD | dirs via input[file] | dirs via DnD |
+|| files via input[file] | files via DnD | directories via input[file] | directories via DnD |
 |---------|---------------------- |---------------|----------------------|--------------|
 | Firefox | yes                   | yes           | yes (50+)            | yes (50+)    |
 | Chrome  | yes                   | yes           | yes (29+)            | yes (29+)    |
