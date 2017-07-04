@@ -77,8 +77,8 @@ Below is example for PHP 7.0 and possibly earlier versions. PHP does not parse t
 ````js
 var uppie = new Uppie();
 uppie(document.documentElement, function(event, formData, files) {
-  Array.prototype.forEach.call(files, function(f) {
-    formData.append("paths[]", f);
+  files.forEach(function(path) {
+    formData.append("paths[]", path);
   });
 
   var xhr = new XMLHttpRequest();
