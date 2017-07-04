@@ -5,6 +5,9 @@
   "author": "silverwind",
   "repository": "silverwind/uppie",
   "license": "BSD-2-Clause",
+  "scripts": {
+    "test": "make test"
+  },
   "keywords": [
     "directory",
     "upload",
