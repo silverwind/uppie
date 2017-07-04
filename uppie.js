@@ -1,11 +1,13 @@
 /*! uppie v1.0.4 | (c) silverwind | BSD license */
+/* eslint-disable no-var */
 (function(m) {
-  if (typeof exports === "object" && typeof module === "object")
+  if (typeof exports === "object" && typeof module === "object") {
     module.exports = m();
-  else if (typeof define === "function" && define.amd)
+  } else if (typeof define === "function" && define.amd) {
     return define([], m);
-  else
+  } else {
     this.Uppie = m();
+  }
 })(function() {
   "use strict";
   return function Uppie() {
