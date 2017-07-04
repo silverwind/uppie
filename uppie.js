@@ -1,4 +1,4 @@
-/*! uppie v1.0.4 | (c) silverwind | BSD license */
+/*! uppie v1.0.5 | (c) silverwind | BSD license */
 /* eslint-disable no-var */
 (function(m) {
   if (typeof exports === "object" && typeof module === "object") {
