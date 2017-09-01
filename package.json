@@ -5,6 +5,8 @@
   "author": "silverwind",
   "repository": "silverwind/uppie",
   "license": "BSD-2-Clause",
+  "main": "uppie.js",
+  "browser": "uppie.js",
   "scripts": {
     "test": "make test"
   },
