@@ -1,14 +1,14 @@
 /*! uppie v1.0.6 | (c) silverwind | BSD license */
 /* eslint-disable no-var */
-(function(m) {
-  if (typeof exports === "object" && typeof module === "object") {
+(function(root, m) {
+  if (typeof define === "function" && define.amd) {
+    define([], m);
+  } else if (typeof module === "object" && module.exports) {
     module.exports = m();
-  } else if (typeof define === "function" && define.amd) {
-    return define([], m);
   } else {
-    this.Uppie = m();
+    root.Uppie = m();
   }
-})(function() {
+})(typeof self !== "undefined" ? self : this, function() {
   "use strict";
   return function Uppie() {
     return function(node, cb) {
