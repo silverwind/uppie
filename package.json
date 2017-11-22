@@ -24,10 +24,10 @@
     "uppie.min.js"
   ],
   "devDependencies": {
-    "eslint": "^4.5.0",
-    "gzip-size-cli": "^2.0.0",
+    "eslint": "^4.11.0",
+    "gzip-size-cli": "^2.1.0",
     "npm-check-updates": "^2.13.0",
     "semver": "^5.4.1",
-    "uglify-js": "^3.0.28"
+    "uglify-js": "^3.1.10"
   }
 }
