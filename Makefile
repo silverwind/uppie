@@ -13,6 +13,11 @@ min:
 	cat README.md | sed -E "s/[0-9]+ bytes/$$(node_modules/.bin/gzip-size --raw uppie.min.js) bytes/" > README.md
 	git diff --exit-code &>/dev/null || git commit -am "rebuild"
 
+update:
+	node_modules/npm-check-updates/bin/ncu --packageFile package.json -ua
+	rm -rf node_modules
+	yarn
+
 publish:
 	npm publish
 	git push -u --follow-tags
@@ -44,5 +49,5 @@ major:
 	npm version major
 	$(MAKE) publish
 
-.PHONY: lint test min publish patch minor major
+.PHONY: lint test min update publish patch minor major
 

@@ -26,6 +26,7 @@
   "devDependencies": {
     "eslint": "^4.5.0",
     "gzip-size-cli": "^2.0.0",
+    "npm-check-updates": "^2.13.0",
     "semver": "^5.4.1",
     "uglify-js": "^3.0.28"
   }
