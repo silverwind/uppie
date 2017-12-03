@@ -14,7 +14,7 @@ min:
 	git diff --exit-code &>/dev/null || git commit -am "rebuild"
 
 update:
-	node_modules/npm-check-updates/bin/ncu --packageFile package.json -ua
+	node_modules/.bin/updates -u
 	rm -rf node_modules
 	yarn
 
