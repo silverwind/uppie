@@ -1,4 +1,4 @@
-/*! uppie v1.0.7 | (c) silverwind | BSD license */
+/*! uppie v1.0.8 | (c) silverwind | BSD license */
 /* eslint-disable no-var */
 (function(root, m) {
   if (typeof define === "function" && define.amd) {
