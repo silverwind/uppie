@@ -145,7 +145,7 @@ rules:
   no-obj-calls: [2]
   no-octal-escape: [2]
   no-octal: [2]
-  no-path-concat: [2]
+  no-path-concat: [0]
   no-process-exit: [0]
   no-proto: [2]
   no-redeclare: [2]
