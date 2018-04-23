@@ -26,7 +26,7 @@ uppie(document.querySelector('#file-input'), function (event, formData, files) {
 | Firefox | yes                   | yes           | yes (50+)            | yes (50+)    |
 | Chrome  | yes                   | yes           | yes (29+)            | yes (29+)    |
 | Edge    | yes                   | yes           | yes (13+)            | yes (14+)    |
-| Safari  | yes                   | yes           | no                   | no           |
+| Safari  | yes                   | yes           | yes (11.1+)          | yes (11.1+)  |
 
 ## Notes
 
