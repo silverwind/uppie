@@ -31,7 +31,7 @@ uppie(document.querySelector('#file-input'), function (event, formData, files) {
 ## Notes
 
 - Empty directories are excluded from the results by all browsers as dictated by the spec.
-- Some browsers may excludes files and directories starting with a `.`.
+- Firefox and Safari exclude files and directories starting with a `.`.
 
 ## API
 ### uppie(node, callback)
