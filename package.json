@@ -25,9 +25,10 @@
   ],
   "devDependencies": {
     "eslint": "^4.19.1",
+    "eslint-config-silverwind": "^1.0.42",
     "gzip-size-cli": "^2.1.0",
     "semver": "^5.5.0",
-    "uglify-js": "^3.3.22",
-    "updates": "^2.4.1"
+    "uglify-js": "^3.4.0",
+    "updates": "^3.0.0"
   }
 }
