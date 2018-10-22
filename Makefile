@@ -8,7 +8,7 @@ test:
 
 min:
 	npx uglifyjs uppie.js -o uppie.min.js --mangle --compress --unsafe --comments '/uppie/' && wc -c uppie.min.js
-	cat README.md | sed -E "s/[0-9]+ bytes/$$($(BIN)/gzip-size --raw uppie.min.js) bytes/" > README.md
+	cat README.md | sed -E "s/[0-9]+ bytes/$$(npx gzip-size --raw uppie.min.js) bytes/" > README.md
 	git diff --exit-code &>/dev/null || git commit -am "rebuild"
 
 update:
@@ -22,8 +22,8 @@ publish:
 
 patch:
 	$(MAKE) lint
-	cat uppie.min.js | sed -E "s/v[0-9\.]+/v$$($(BIN)/semver -i patch $(VERSION))/" > uppie.min.js
-	cat uppie.js | sed -E "s/v[0-9\.]+/v$$($(BIN)/semver -i patch $(VERSION))/" > uppie.js
+	cat uppie.min.js | sed -E "s/v[0-9\.]+/v$$(npx semver -i patch $(VERSION))/" > uppie.min.js
+	cat uppie.js | sed -E "s/v[0-9\.]+/v$$(npx semver -i patch $(VERSION))/" > uppie.js
 	git diff --exit-code &>/dev/null || git commit -am "bump version"
 	$(MAKE) min
 	npx ver patch
@@ -31,8 +31,8 @@ patch:
 
 minor:
 	$(MAKE) lint
-	cat uppie.min.js | sed -E "s/v[0-9\.]+/v$$($(BIN)/semver -i minor $(VERSION))/" > uppie.min.js
-	cat uppie.js | sed -E "s/v[0-9\.]+/v$$($(BIN)/semver -i minor $(VERSION))/" > uppie.js
+	cat uppie.min.js | sed -E "s/v[0-9\.]+/v$$(npx semver -i minor $(VERSION))/" > uppie.min.js
+	cat uppie.js | sed -E "s/v[0-9\.]+/v$$(npx semver -i minor $(VERSION))/" > uppie.js
 	git diff --exit-code &>/dev/null || git commit -am "bump version"
 	$(MAKE) min
 	npx ver minor
@@ -40,8 +40,8 @@ minor:
 
 major:
 	$(MAKE) lint
-	cat uppie.min.js | sed -E "s/v[0-9\.]+/v$$($(BIN)/semver -i major $(VERSION))/" > uppie.min.js
-	cat uppie.js | sed -E "s/v[0-9\.]+/v$$($(BIN)/semver -i major $(VERSION))/" > uppie.js
+	cat uppie.min.js | sed -E "s/v[0-9\.]+/v$$(npx semver -i major $(VERSION))/" > uppie.min.js
+	cat uppie.js | sed -E "s/v[0-9\.]+/v$$(npx semver -i major $(VERSION))/" > uppie.js
 	git diff --exit-code &>/dev/null || git commit -am "bump version"
 	$(MAKE) min
 	npx ver major
