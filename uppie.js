@@ -1,4 +1,4 @@
-/*! uppie v1.0.11 | (c) silverwind | BSD license */
+/*! uppie v1.0.12 | (c) silverwind | BSD license */
 (function(root, m) {
   if (typeof define === "function" && define.amd) {
     define([], m);
