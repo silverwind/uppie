@@ -46,7 +46,7 @@
           newDirectoryApi(dt, cb.bind(null, event));
         } else if (dt.files) {
           arrayApi(dt, cb.bind(null, event));
-        } else cb();
+        } else cb(event);
       });
     }
   }
