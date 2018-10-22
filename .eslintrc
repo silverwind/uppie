@@ -1,5 +1,5 @@
 root: true
-extends: eslint-config-silverwind
+extends: silverwind
 
 rules:
   no-var: [0]
