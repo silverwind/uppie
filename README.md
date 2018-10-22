@@ -6,16 +6,13 @@
 
 ## Example (also see this [demo](https://silverwind.io/uppie/example.html))
 ```html
-<input type="file" id="file-input" multiple directory webkitdirectory allowdirs/>
 <script src="uppie.js"></script>
+<input type="file" id="file-input" multiple directory webkitdirectory allowdirs/>
 ```
 ```js
-var uppie = new Uppie();
-
-uppie(document.querySelector('#file-input'), function (event, formData, files) {
-  var xhr = new XMLHttpRequest();
-  xhr.open('POST', '/upload');
-  xhr.send(formData);
+const uppie = new Uppie();
+uppie(document.querySelector('#file-input'), async (event, formData, files) => {
+  await fetch('/upload', {method: 'POST', body: formData});
 });
 ```
 
