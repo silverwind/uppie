@@ -1,6 +1,6 @@
 {
   "name": "uppie",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "Cross-browser directory and multi-file upload library",
   "author": "silverwind",
   "repository": "silverwind/uppie",
