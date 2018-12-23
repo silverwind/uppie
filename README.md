@@ -61,6 +61,8 @@ Content-Disposition: form-data; name="files[]"; filename="docs/path/to/3.txt"
 Content-Type: text/plain
 ```
 
+Make sure to sanitize `filename` on the server before writing it to the disk to prevent exploits involving `..` in the path.
+
 ## Recommended `input` element attributes
 
 - `multiple`: allow multiple files to be selected.
