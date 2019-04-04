@@ -34,7 +34,7 @@ uppie(document.querySelector('#file-input'), async (event, formData, files) => {
 ### uppie(node, [opts], callback)
 - `node` *Node* or *NodeList*: One or more DOM nodes. If a `<input type="file">` is given, uppie will monitor it for `change` events. Any other element type will be enabled as a dropzone and watched for `drop` events. If you want to use both on the same element, use a hidden `<input>` and forward the click event.
 - `opts` *Object*: A options object which can contain:
-  - `name`: The `name` attribute for creating the FormData entries. Default: `files[]`.
+  - `name`: The `name` attribute for creating the FormData entries. Default: `"files[]"`.
 - `callback` *Function*: callback which is called every time the selected files change or when files are dropped in the dropzone.
 
 The callback receives
