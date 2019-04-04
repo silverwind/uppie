@@ -22,15 +22,18 @@
     <script>
       var uppie = new Uppie();
 
-      /* used on an input element */
-      uppie(document.querySelectorAll(".input"), function(event, formData, files) {
+      function output(event, formData, files) {
         document.querySelector(".output").textContent = files.join("\n");
-      });
+        console.info("event:", event);
+        console.info("formData:", formData.getAll("files[]"));
+        console.info("files:", files);
+      }
+
+      /* used on an input element */
+      uppie(document.querySelectorAll(".input"), output);
 
       /* used on a dropzone element */
-      uppie(document.documentElement, function(event, formData, files) {
-        document.querySelector(".output").textContent = files.join("\n");
-      });
+      uppie(document.documentElement, output);
 
     </script>
   </body>

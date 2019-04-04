@@ -10,25 +10,37 @@
 })(typeof self !== "undefined" ? self : this, function() {
   "use strict";
   return function Uppie() {
-    return function(node, cb) {
+    var defaultOpts = {
+      name: "files[]",
+    };
+
+    return function(node, opts, cb) {
+      if (typeof opts === "function") {
+        cb = opts;
+        opts = defaultOpts;
+      } else {
+        if (!opts) opts = {};
+        if (!opts.name) opts.name = defaultOpts.name;
+      }
+
       if (node instanceof NodeList) {
         [].slice.call(node).forEach(function(n) {
-          watch(n, cb);
+          watch(n, opts, cb);
         });
       } else {
-        watch(node, cb);
+        watch(node, opts, cb);
       }
     };
   };
 
-  function watch(node, cb) {
+  function watch(node, opts, cb) {
     if (node.tagName.toLowerCase() === "input" && node.type === "file") {
       node.addEventListener("change", function(event) {
         var t = event.target;
         if (t.files && t.files.length) {
-          arrayApi(t, cb.bind(null, event));
+          arrayApi(t, opts, cb.bind(null, event));
         } else if ("getFilesAndDirectories" in t) {
-          newDirectoryApi(t, cb.bind(null, event));
+          newDirectoryApi(t, opts, cb.bind(null, event));
         } else {
           cb(event);
         }
@@ -41,18 +53,18 @@
         event.preventDefault();
         var dt = event.dataTransfer;
         if (dt.items && dt.items.length && "webkitGetAsEntry" in dt.items[0]) {
-          entriesApi(dt.items, cb.bind(null, event));
+          entriesApi(dt.items, opts, cb.bind(null, event));
         } else if ("getFilesAndDirectories" in dt) {
-          newDirectoryApi(dt, cb.bind(null, event));
+          newDirectoryApi(dt, opts, cb.bind(null, event));
         } else if (dt.files) {
-          arrayApi(dt, cb.bind(null, event));
+          arrayApi(dt, opts, cb.bind(null, event));
         } else cb(event);
       });
     }
   }
 
   // API implemented in Firefox 42+ and Edge
-  function newDirectoryApi(input, cb) {
+  function newDirectoryApi(input, opts, cb) {
     var fd = new FormData(), files = [];
     var iterate = function(entries, path, resolve) {
       var promises = [];
@@ -65,7 +77,7 @@
           } else {
             if (entry.name) {
               var p = (path + entry.name).replace(/^[/\\]/, "");
-              fd.append("files[]", entry, p);
+              fd.append(opts.name, entry, p);
               files.push(p);
             }
             resolve();
@@ -82,17 +94,17 @@
   }
 
   // old prefixed API implemented in Chrome 11+ as well as array fallback
-  function arrayApi(input, cb) {
+  function arrayApi(input, opts, cb) {
     var fd = new FormData(), files = [];
     [].slice.call(input.files).forEach(function(file) {
-      fd.append("files[]", file, file.webkitRelativePath || file.name);
+      fd.append(opts.name, file, file.webkitRelativePath || file.name);
       files.push(file.webkitRelativePath || file.name);
     });
     cb(fd, files);
   }
 
   // old drag and drop API implemented in Chrome 11+
-  function entriesApi(items, cb) {
+  function entriesApi(items, opts, cb) {
     var fd = new FormData(), files = [], rootPromises = [];
 
     function readEntries(entry, reader, oldEntries, cb) {
@@ -116,7 +128,7 @@
             if (entry.isFile) {
               entry.file(function(file) {
                 var p = path + "/" + file.name;
-                fd.append("files[]", file, p);
+                fd.append(opts.name, file, p);
                 files.push(p);
                 resolve();
               }, resolve.bind());
@@ -133,7 +145,7 @@
         rootPromises.push(new Promise(function(resolve) {
           if (entry.isFile) {
             entry.file(function(file) {
-              fd.append("files[]", file, file.name);
+              fd.append(opts.name, file, file.name);
               files.push(file.name);
               resolve();
             }, resolve.bind());

@@ -31,8 +31,10 @@ uppie(document.querySelector('#file-input'), async (event, formData, files) => {
 - Firefox and Safari exclude files and directories starting with a `.`.
 
 ## API
-### uppie(node, callback)
+### uppie(node, [opts], callback)
 - `node` *Node* or *NodeList*: One or more DOM nodes. If a `<input type="file">` is given, uppie will monitor it for `change` events. Any other element type will be enabled as a dropzone and watched for `drop` events. If you want to use both on the same element, use a hidden `<input>` and forward the click event.
+- `opts` *Object*: A options object which can contain:
+  - `name`: The `name` attribute for creating the FormData entries. Default: `files[]`.
 - `callback` *Function*: callback which is called every time the selected files change or when files are dropped in the dropzone.
 
 The callback receives
@@ -43,7 +45,7 @@ The callback receives
 
 #### FormData format
 
-`name` will always be `"files[]"`, `filename` will be the full path to the file, with `/` used as path separator. Does not include a leading slash. Here's an example:
+`name` defaults to `"files[]"`, `filename` will be the full path to the file, with `/` used as path separator. Does not include a leading slash. Make sure to sanitize `filename` on the server before writing it to the disk to prevent exploits involving `..` in the path. Example FormData:
 
 ```
 ------Boundary
@@ -60,8 +62,6 @@ Content-Type: text/plain
 Content-Disposition: form-data; name="files[]"; filename="docs/path/to/3.txt"
 Content-Type: text/plain
 ```
-
-Make sure to sanitize `filename` on the server before writing it to the disk to prevent exploits involving `..` in the path.
 
 ## Recommended `input` element attributes
 
