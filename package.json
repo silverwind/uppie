@@ -24,12 +24,12 @@
     "uppie.min.js"
   ],
   "devDependencies": {
-    "eslint": "^5.11.0",
-    "eslint-config-silverwind": "^2.0.12",
+    "eslint": "^5.16.0",
+    "eslint-config-silverwind": "^2.1.0",
     "gzip-size-cli": "^3.0.0",
-    "semver": "^5.6.0",
-    "uglify-js": "^3.4.9",
-    "updates": "^6.0.1",
-    "ver": "^3.0.1"
+    "semver": "^6.0.0",
+    "uglify-js": "^3.5.3",
+    "updates": "^8.0.0",
+    "ver": "^4.0.3"
   }
 }
