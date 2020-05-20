@@ -103,21 +103,21 @@
     cb(fd, files);
   }
 
+  function readEntries(entry, reader, oldEntries, cb) {
+    var dirReader = reader || entry.createReader();
+    dirReader.readEntries(function(entries) {
+      var newEntries = oldEntries ? oldEntries.concat(entries) : entries;
+      if (entries.length) {
+        setTimeout(readEntries.bind(null, entry, dirReader, newEntries, cb), 0);
+      } else {
+        cb(newEntries);
+      }
+    });
+  }
+
   // old drag and drop API implemented in Chrome 11+
   function entriesApi(items, opts, cb) {
     var fd = new FormData(), files = [], rootPromises = [];
-
-    function readEntries(entry, reader, oldEntries, cb) {
-      var dirReader = reader || entry.createReader();
-      dirReader.readEntries(function(entries) {
-        var newEntries = oldEntries ? oldEntries.concat(entries) : entries;
-        if (entries.length) {
-          setTimeout(readEntries.bind(null, entry, dirReader, newEntries, cb), 0);
-        } else {
-          cb(newEntries);
-        }
-      });
-    }
 
     function readDirectory(entry, path, resolve) {
       if (!path) path = entry.name;
