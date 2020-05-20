@@ -4,14 +4,22 @@
 
 `uppie` is a tiny library (931 bytes gzipped) which helps you with file and directory uploads in browsers. It supports all current and past implementations of multi-file and directory uploads and provides you with a `FormData` object you can submit directly to a server through either `XMLHttpRequest` or `fetch`. Both the `<input type="file">` element and drag-and-drop are supported.
 
-## Example (also see this [demo](https://silverwind.github.io/uppie/example.html))
+## Usage
+```bash
+npm install uppie
+```
+
+Alternatively, you can also include the script directly in HTML which will register `window.Uppie`:
+
 ```html
-<script src="uppie.js"></script>
-<input type="file" id="file-input" multiple directory webkitdirectory allowdirs/>
+<script src="uppie.min.js"></script>
+<input type="file" id="file" multiple directory webkitdirectory allowdirs/>
 ```
 ```js
+const Uppie = require('uppie'); // when using npm module
 const uppie = new Uppie();
-uppie(document.querySelector('#file-input'), async (event, formData, files) => {
+
+uppie(document.querySelector('#file'), async (event, formData, files) => {
   await fetch('/upload', {method: 'POST', body: formData});
 });
 ```

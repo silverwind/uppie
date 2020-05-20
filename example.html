@@ -10,11 +10,11 @@
   <body>
     <fieldset>
       <legend>Files</legend>
-      <input class="input" type="file" multiple/>
+      <input type="file" multiple/>
     </fieldset>
     <fieldset>
       <legend>Directories</legend>
-      <input class="input" type="file" multiple directory webkitdirectory allowdirs/>
+      <input type="file" multiple directory webkitdirectory allowdirs/>
     </fieldset>
     <p>Drop files on this page or select them above. Detected file paths will be shown below.</p>
     <pre class="output"></pre>
@@ -30,7 +30,7 @@
       }
 
       /* used on an input element */
-      uppie(document.querySelectorAll(".input"), output);
+      uppie(document.querySelectorAll("input"), output);
 
       /* used on a dropzone element */
       uppie(document.documentElement, output);
