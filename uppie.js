@@ -34,7 +34,7 @@
   };
 
   function watch(node, opts, cb) {
-    if (node.tagName.toLowerCase() === "input" && node.type === "file") {
+    if (node.tagName && node.tagName.toLowerCase() === "input" && node.type === "file") {
       node.addEventListener("change", function(event) {
         var t = event.target;
         if (t.files && t.files.length) {
