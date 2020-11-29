@@ -24,11 +24,11 @@
     "uppie.min.js"
   ],
   "devDependencies": {
-    "eslint": "7.0.0",
-    "eslint-config-silverwind": "13.3.3",
-    "gzip-size-cli": "3.0.0",
-    "terser": "4.7.0",
-    "updates": "10.2.11",
-    "versions": "8.2.9"
+    "eslint": "7.14.0",
+    "eslint-config-silverwind": "25.0.0",
+    "gzip-size-cli": "4.0.0",
+    "terser": "5.5.1",
+    "updates": "11.4.0",
+    "versions": "8.4.3"
   }
 }

@@ -8,3 +8,5 @@ rules:
   no-var: [0]
   prefer-arrow-callback: [0]
   prefer-template: [0]
+  unicorn/consistent-function-scoping: [0]
+  no-restricted-globals: [0]
