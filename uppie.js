@@ -1,6 +1,8 @@
-const defaultOpts = {name: "files[]"};
+const defaultOpts = {
+  name: "files[]",
+};
 
-export default function Uppie() { // eslint-disable-line import/no-unused-modules
+export default function Uppie() {
   return (node, opts, cb) => {
     if (typeof opts === "function") {
       cb = opts;
