@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>fieldset {display: inline-block}</style>
+  </head>
+  <body>
+    <fieldset><legend>Files</legend><input type="file" multiple/></fieldset>
+    <fieldset><legend>Dirs</legend><input type="file" multiple webkitdirectory/></fieldset>
+    <pre class="output"></pre>
+    <script type="module">
+      import uppie from "./uppie.js";
+      uppie(document.querySelectorAll("input"), (_e, _fd, files) => {
+        document.querySelector(".output").textContent = files.join("\n");
+      });
+      uppie(document.documentElement, (_e, _fd, files) => {
+        document.querySelector(".output").textContent = files.join("\n");
+      });
+    </script>
+  </body>
+</html>

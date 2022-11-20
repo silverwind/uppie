@@ -68,7 +68,6 @@ Content-Type: text/plain
 
 - `multiple`: allow multiple files to be selected.
 - `webkitdirectory`: enable directory uploads in Chrome and Firefox.
-- `allowdirs`: enable experimental directory upload API in Firefox and Edge.
 
 ## PHP example
 
