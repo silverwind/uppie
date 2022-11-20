@@ -10,10 +10,9 @@
 npm install uppie
 ```
 ```js
-import Uppie from 'uppie';
+import uppie from 'uppie';
 
-const uppie = new Uppie();
-uppie(document.querySelector('#file'), async (event, formData, files) => {
+uppie(document.querySelector('#file'), async (e, formData, files) => {
   await fetch('/upload', {method: 'POST', body: formData});
 });
 ```

@@ -2,24 +2,22 @@ const defaultOpts = {
   name: "files[]",
 };
 
-export default function Uppie() {
-  return (node, opts, cb) => {
-    if (typeof opts === "function") {
-      cb = opts;
-      opts = defaultOpts;
-    } else {
-      if (!opts) opts = {};
-      if (!opts.name) opts.name = defaultOpts.name;
-    }
+export default function uppie(node, opts, cb) {
+  if (typeof opts === "function") {
+    cb = opts;
+    opts = defaultOpts;
+  } else {
+    if (!opts) opts = {};
+    if (!opts.name) opts.name = defaultOpts.name;
+  }
 
-    if (node instanceof NodeList) {
-      for (const n of [].slice.call(node)) {
-        watch(n, opts, cb);
-      }
-    } else {
-      watch(node, opts, cb);
+  if (node instanceof NodeList) {
+    for (const n of [].slice.call(node)) {
+      watch(n, opts, cb);
     }
-  };
+  } else {
+    watch(node, opts, cb);
+  }
 }
 
 function watch(node, opts, cb) {
