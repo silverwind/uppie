@@ -2,7 +2,7 @@ const defaultOpts = {
   name: "files[]",
 };
 
-export default function uppie(node, opts, cb) {
+export default function uppie(nodes, opts, cb) {
   if (typeof opts === "function") {
     cb = opts;
     opts = defaultOpts;
@@ -11,17 +11,16 @@ export default function uppie(node, opts, cb) {
     if (!opts.name) opts.name = defaultOpts.name;
   }
 
-  for (const n of (node instanceof NodeList ? node : [node])) {
-    watch(n, opts, cb);
+  for (const node of ((nodes instanceof NodeList || Array.isArray(nodes)) ? nodes : [nodes])) {
+    watch(node, opts, cb);
   }
 }
 
 function watch(node, opts, cb) {
   if (node.tagName?.toLowerCase() === "input" && node.type === "file") {
     node.addEventListener("change", e => {
-      const t = e.target;
-      if (t?.files?.length) {
-        arrayApi(t, opts, cb.bind(null, e));
+      if (e.target?.files?.length) {
+        arrayApi(e.target, opts, cb.bind(null, e));
       } else {
         cb(e);
       }
@@ -32,17 +31,18 @@ function watch(node, opts, cb) {
     node.addEventListener("dragenter", stop);
     node.addEventListener("drop", (e) => {
       e.preventDefault();
-      const dt = e.dataTransfer;
-      if (dt.items?.[0]?.webkitGetAsEntry()) {
-        entriesApi(dt.items, opts, cb.bind(null, e));
-      } else if (dt.files) {
-        arrayApi(dt, opts, cb.bind(null, e));
-      } else cb(e);
+      if (e.dataTransfer.items?.[0]?.webkitGetAsEntry()) {
+        entriesApi(e.dataTransfer.items, opts, cb.bind(null, e));
+      } else if (e.dataTransfer.files) {
+        arrayApi(e.dataTransfer, opts, cb.bind(null, e));
+      } else {
+        cb(e);
+      }
     });
   }
 }
 
-// old prefixed API implemented in Chrome 11+ as well as array fallback
+// prefixed API implemented in Chrome 11+ as well as array fallback
 function arrayApi(input, opts, cb) {
   const fd = new FormData();
   const files = [];
@@ -67,7 +67,7 @@ function readEntries(entry, reader, oldEntries, cb) {
   });
 }
 
-// old drag and drop API implemented in Chrome 11+
+// drag and drop API implemented in Chrome 11+
 function entriesApi(items, opts, cb) {
   const fd = new FormData();
   const files = [];
