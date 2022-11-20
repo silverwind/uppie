@@ -8,6 +8,7 @@
   "exports": "./uppie.js",
   "main": "./uppie.js",
   "browser": "./uppie.js",
+  "sideEffects": false,
   "files": [
     "uppie.js"
   ],
