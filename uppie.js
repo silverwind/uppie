@@ -11,12 +11,8 @@ export default function uppie(node, opts, cb) {
     if (!opts.name) opts.name = defaultOpts.name;
   }
 
-  if (node instanceof NodeList) {
-    for (const n of [].slice.call(node)) {
-      watch(n, opts, cb);
-    }
-  } else {
-    watch(node, opts, cb);
+  for (const n of (node instanceof NodeList ? node : [node])) {
+    watch(n, opts, cb);
   }
 }
 
@@ -51,7 +47,7 @@ function arrayApi(input, opts, cb) {
   const fd = new FormData();
   const files = [];
 
-  for (const file of [].slice.call(input.files)) {
+  for (const file of input.files) {
     fd.append(opts.name, file, file.webkitRelativePath || file.name);
     files.push(file.webkitRelativePath || file.name);
   }
@@ -61,7 +57,7 @@ function arrayApi(input, opts, cb) {
 function readEntries(entry, reader, oldEntries, cb) {
   const dirReader = reader || entry.createReader();
 
-  dirReader.readEntries((entries) => {
+  dirReader.readEntries(entries => {
     const newEntries = oldEntries ? oldEntries.concat(entries) : entries;
     if (entries.length) {
       setTimeout(readEntries.bind(null, entry, dirReader, newEntries, cb), 0);
@@ -73,29 +69,33 @@ function readEntries(entry, reader, oldEntries, cb) {
 
 // old drag and drop API implemented in Chrome 11+
 function entriesApi(items, opts, cb) {
-  const fd = new FormData(), files = [], rootPromises = [];
+  const fd = new FormData();
+  const files = [];
+  const rootPromises = [];
 
   function readDirectory(entry, path, resolve) {
     if (!path) path = entry.name;
-    readEntries(entry, 0, 0, (entries) => {
+    readEntries(entry, 0, 0, entries => {
       const promises = [];
       for (const entry of entries) {
-        promises.push(new Promise((resolve) => {
+        promises.push(new Promise(resolve => {
           if (entry.isFile) {
-            entry.file((file) => {
+            entry.file(file => {
               const p = `${path}/${file.name}`;
               fd.append(opts.name, file, p);
               files.push(p);
               resolve();
             }, resolve.bind());
-          } else readDirectory(entry, `${path}/${entry.name}`, resolve);
+          } else {
+            readDirectory(entry, `${path}/${entry.name}`, resolve);
+          }
         }));
       }
       Promise.all(promises).then(resolve.bind());
     });
   }
 
-  for (let entry of [].slice.call(items)) {
+  for (let entry of items) {
     entry = entry.webkitGetAsEntry();
     if (entry) {
       rootPromises.push(new Promise((resolve) => {
