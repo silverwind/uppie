@@ -5,12 +5,12 @@
   "author": "silverwind",
   "repository": "silverwind/uppie",
   "license": "BSD-2-Clause",
-  "exports": "./uppie.js",
-  "main": "./uppie.js",
-  "browser": "./uppie.js",
+  "exports": "./index.js",
+  "main": "./index.js",
+  "browser": "./index.js",
   "sideEffects": false,
   "files": [
-    "uppie.js"
+    "index.js"
   ],
   "keywords": [
     "directory",
