@@ -1,5 +1,6 @@
 # uppie
-[![](https://img.shields.io/npm/v/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie) [![](https://img.shields.io/npm/dm/uppie.svg)](https://www.npmjs.org/package/uppie)
+[![](https://img.shields.io/npm/v/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie) [![](https://img.shields.io/npm/dm/uppie.svg)](https://www.npmjs.org/package/uppie) [![](https://img.shields.io/bundlephobia/minzip/uppie.svg)](https://bundlephobia.com/package/uppie)
+
 > Cross-browser file and directory and upload library
 
 `uppie` is a tiny library (979 bytes gzipped) which helps you with file and directory uploads in browsers. It supports all current and past implementations of multi-file and directory uploads and provides you with a `FormData` object you can submit directly to a server through either `XMLHttpRequest` or `fetch`. Both the `<input type="file">` element and drag-and-drop are supported.
@@ -8,17 +9,10 @@
 ```bash
 npm install uppie
 ```
-
-Alternatively, you can also include the script directly in HTML which will register `window.Uppie`:
-
-```html
-<script src="uppie.min.js"></script>
-<input type="file" id="file" multiple directory webkitdirectory allowdirs/>
-```
 ```js
-const Uppie = require('uppie'); // when using npm module
-const uppie = new Uppie();
+import Uppie from 'uppie';
 
+const uppie = new Uppie();
 uppie(document.querySelector('#file'), async (event, formData, files) => {
   await fetch('/upload', {method: 'POST', body: formData});
 });
@@ -82,13 +76,13 @@ Content-Type: text/plain
 Below is example for PHP 7.0 and possibly earlier versions. PHP does not parse the path from the `filename` field, so it is necessary to submit the path through other means, like as separate FormData fields as done in the example.
 
 ````js
-var uppie = new Uppie();
-uppie(document.documentElement, function(event, formData, files) {
-  files.forEach(function(path) {
+const uppie = new Uppie();
+uppie(document.documentElement, (event, formData, files) => {
+  files.forEach(path => {
     formData.append("paths[]", path);
   });
 
-  var xhr = new XMLHttpRequest();
+  const xhr = new XMLHttpRequest();
   xhr.open('POST', 'upload.php');
   xhr.send(formData);
 });

@@ -5,11 +5,10 @@
   "author": "silverwind",
   "repository": "silverwind/uppie",
   "license": "BSD-2-Clause",
-  "main": "uppie.js",
-  "browser": "uppie.js",
-  "scripts": {
-    "test": "make test"
-  },
+  "exports": "uppie.js",
+  "files": [
+    "uppie.js"
+  ],
   "keywords": [
     "directory",
     "upload",
@@ -19,16 +18,10 @@
     "browser",
     "cross-browser"
   ],
-  "files": [
-    "uppie.js",
-    "uppie.min.js"
-  ],
   "devDependencies": {
-    "eslint": "7.14.0",
-    "eslint-config-silverwind": "25.0.0",
-    "gzip-size-cli": "4.0.0",
-    "terser": "5.5.1",
-    "updates": "11.4.0",
-    "versions": "8.4.3"
+    "eslint": "8.28.0",
+    "eslint-config-silverwind": "62.0.1",
+    "updates": "13.2.1",
+    "versions": "10.2.4"
   }
 }
