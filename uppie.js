@@ -26,8 +26,6 @@ function watch(node, opts, cb) {
       const t = e.target;
       if (t?.files?.length) {
         arrayApi(t, opts, cb.bind(null, e));
-      } else if ("getFilesAndDirectories" in t) {
-        newDirectoryApi(t, opts, cb.bind(null, e));
       } else {
         cb(e);
       }
@@ -41,46 +39,11 @@ function watch(node, opts, cb) {
       const dt = e.dataTransfer;
       if (dt.items?.[0]?.webkitGetAsEntry()) {
         entriesApi(dt.items, opts, cb.bind(null, e));
-      } else if ("getFilesAndDirectories" in dt) {
-        newDirectoryApi(dt, opts, cb.bind(null, e));
       } else if (dt.files) {
         arrayApi(dt, opts, cb.bind(null, e));
       } else cb(e);
     });
   }
-}
-
-// API implemented in Firefox 42+ and Edge
-function newDirectoryApi(input, opts, cb) {
-  const fd = new FormData();
-  const files = [];
-
-  function iterate(entries, path, resolve) {
-    const promises = [];
-    for (const entry of entries) {
-      promises.push(new Promise((resolve) => {
-        if ("getFilesAndDirectories" in entry) {
-          entry.getFilesAndDirectories().then((entries) => {
-            iterate(entries, `${entry.path}/`, resolve);
-          });
-        } else {
-          if (entry.name) {
-            const p = (path + entry.name).replace(/^[/\\]/, "");
-            fd.append(opts.name, entry, p);
-            files.push(p);
-          }
-          resolve();
-        }
-      }));
-    }
-    Promise.all(promises).then(resolve);
-  }
-
-  input.getFilesAndDirectories().then((entries) => {
-    new Promise((resolve) => {
-      iterate(entries, "/", resolve);
-    }).then(cb.bind(null, fd, files));
-  });
 }
 
 // old prefixed API implemented in Chrome 11+ as well as array fallback
