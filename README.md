@@ -19,7 +19,7 @@ uppie(document.querySelector('#file'), async (e, formData, files) => {
 
 ## Browser support
 
-|| files via input[type=file] | files via DnD | directories via input[file] | directories via DnD |
+|| files via input[type=file] | files via DnD | directories via input[type=file] | directories via DnD |
 |---------|---------------------- |---------------|----------------------|--------------|
 | Firefox | yes                   | yes           | yes (50+)            | yes (50+)    |
 | Chrome  | yes                   | yes           | yes (29+)            | yes (29+)    |
@@ -66,8 +66,8 @@ Content-Type: text/plain
 
 ## Recommended `input` element attributes
 
-- `multiple`: allow multiple files to be selected.
-- `webkitdirectory`: enable directory uploads in Chrome and Firefox.
+- `multiple`: allow multiple files or directories to be selected.
+- `webkitdirectory`: enable directory uploads.
 
 ## PHP example
 
