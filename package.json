@@ -22,9 +22,9 @@
     "cross-browser"
   ],
   "devDependencies": {
-    "eslint": "8.32.0",
-    "eslint-config-silverwind": "65.1.0",
-    "updates": "13.2.8",
-    "versions": "10.4.1"
+    "eslint": "8.41.0",
+    "eslint-config-silverwind": "73.0.0",
+    "updates": "14.1.0",
+    "versions": "11.0.0"
   }
 }
