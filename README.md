@@ -1,5 +1,5 @@
 # uppie
-[![](https://img.shields.io/npm/v/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie) [![](https://img.shields.io/npm/dm/uppie.svg)](https://www.npmjs.org/package/uppie) [![](https://img.shields.io/bundlephobia/minzip/uppie.svg)](https://bundlephobia.com/package/uppie)
+[![](https://img.shields.io/npm/v/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie) [![](https://img.shields.io/npm/dm/uppie.svg)](https://www.npmjs.org/package/uppie) [![](https://img.shields.io/bundlephobia/minzip/uppie.svg)](https://bundlephobia.com/package/uppie) [![](https://packagephobia.com/badge?p=uppie)](https://packagephobia.com/result?p=uppie)
 
 > Cross-browser file and directory and upload library
 
