@@ -8,7 +8,7 @@
     <fieldset><legend>Dirs</legend><input type="file" multiple webkitdirectory/></fieldset>
     <pre class="output"></pre>
     <script type="module">
-      import uppie from "./index.js";
+      import {uppie} from "./index.js";
       uppie(document.querySelectorAll("input"), (_e, _fd, files) => {
         document.querySelector(".output").textContent = files.join("\n");
       });
