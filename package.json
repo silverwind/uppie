@@ -6,21 +6,10 @@
   "repository": "silverwind/uppie",
   "license": "BSD-2-Clause",
   "exports": "./index.js",
-  "main": "./index.js",
-  "browser": "./index.js",
   "type": "module",
   "sideEffects": false,
   "files": [
     "index.js"
-  ],
-  "keywords": [
-    "directory",
-    "upload",
-    "formdata",
-    "xhr",
-    "ajax",
-    "browser",
-    "cross-browser"
   ],
   "devDependencies": {
     "eslint": "8.43.0",
