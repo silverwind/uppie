@@ -2,7 +2,7 @@ const defaultOpts = {
   name: "files[]",
 };
 
-export default function uppie(nodes, opts, cb) {
+export function uppie(nodes, opts, cb) {
   if (typeof opts === "function") {
     cb = opts;
     opts = defaultOpts;

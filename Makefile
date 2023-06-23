@@ -11,6 +11,7 @@ lint: node_modules
 
 .PHONY: test
 test: lint
+	npx vitest
 
 .PHONY: publish
 publish: node_modules

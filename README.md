@@ -10,7 +10,7 @@
 npm install uppie
 ```
 ```js
-import uppie from 'uppie';
+import {uppie} from 'uppie';
 
 uppie(document.querySelector('#file'), async (e, formData, files) => {
   await fetch('/upload', {method: 'POST', body: formData});
@@ -74,7 +74,10 @@ Content-Type: text/plain
 Below is example for PHP 7.0 and possibly earlier versions. PHP does not parse the path from the `filename` field, so it is necessary to submit the path through other means, like as separate FormData fields as done in the example.
 
 ````js
+import {uppie} from 'uppie';
+
 const uppie = new Uppie();
+
 uppie(document.documentElement, (event, formData, files) => {
   files.forEach(path => {
     formData.append("paths[]", path);

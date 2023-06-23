@@ -8,6 +8,7 @@
   "exports": "./index.js",
   "main": "./index.js",
   "browser": "./index.js",
+  "type": "module",
   "sideEffects": false,
   "files": [
     "index.js"
@@ -22,9 +23,11 @@
     "cross-browser"
   ],
   "devDependencies": {
-    "eslint": "8.41.0",
-    "eslint-config-silverwind": "73.0.0",
-    "updates": "14.1.0",
-    "versions": "11.0.0"
+    "eslint": "8.43.0",
+    "eslint-config-silverwind": "73.0.4",
+    "updates": "14.2.8",
+    "versions": "11.0.1",
+    "vitest": "0.32.2",
+    "vitest-config-silverwind": "1.0.0"
   }
 }
