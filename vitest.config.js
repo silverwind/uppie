@@ -1,4 +1,4 @@
-import {defineConfig} from "vitest/dist/config.js";
+import {defineConfig} from "vitest/config";
 import {frontendTest} from "vitest-config-silverwind";
 
 export default defineConfig({

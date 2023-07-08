@@ -12,12 +12,12 @@
     "index.js"
   ],
   "devDependencies": {
-    "eslint": "8.43.0",
-    "eslint-config-silverwind": "73.0.4",
+    "eslint": "8.44.0",
+    "eslint-config-silverwind": "73.1.2",
     "jsdom": "22.1.0",
-    "updates": "14.2.9",
+    "updates": "14.3.2",
     "versions": "11.0.1",
-    "vitest": "0.32.2",
-    "vitest-config-silverwind": "2.0.0"
+    "vitest": "0.33.0",
+    "vitest-config-silverwind": "2.1.0"
   }
 }
