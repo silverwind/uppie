@@ -1,8 +1,6 @@
 import {defineConfig} from "vitest/config";
-import {frontendTest} from "vitest-config-silverwind";
+import {backend} from "vitest-config-silverwind";
 
-export default defineConfig({
-  test: frontendTest({
-    url: import.meta.url,
-  }),
-});
+export default defineConfig(backend({
+  url: import.meta.url,
+}));
