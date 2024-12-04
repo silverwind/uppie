@@ -13,13 +13,13 @@
   ],
   "devDependencies": {
     "eslint": "8.57.0",
-    "eslint-config-silverwind": "83.0.2",
-    "updates": "16.0.1",
-    "versions": "12.0.1",
-    "vitest": "1.5.0",
-    "vitest-config-silverwind": "8.0.4"
+    "eslint-config-silverwind": "94.2.1",
+    "updates": "16.4.0",
+    "versions": "12.1.2",
+    "vitest": "2.1.8",
+    "vitest-config-silverwind": "9.2.0"
   },
   "dependencies": {
-    "happy-dom": "14.7.1"
+    "happy-dom": "15.11.7"
   }
 }
