@@ -1,4 +1,4 @@
-import {uppie} from "./index.js";
+import {uppie} from "./index.ts";
 
 test("exports", () => {
   expect(uppie).toBeTruthy();
