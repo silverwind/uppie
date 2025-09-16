@@ -12,13 +12,13 @@
     "index.js"
   ],
   "devDependencies": {
-    "eslint": "8.57.0",
-    "eslint-config-silverwind": "101.2.1",
+    "eslint": "9.35.0",
+    "eslint-config-silverwind": "103.0.6",
     "happy-dom": "18.0.1",
-    "typescript": "5.8.3",
-    "typescript-config-silverwind": "9.0.8",
-    "updates": "16.4.2",
-    "versions": "12.1.3",
+    "typescript": "5.9.2",
+    "typescript-config-silverwind": "10.0.1",
+    "updates": "16.7.2",
+    "versions": "13.1.1",
     "vitest": "3.2.4",
     "vitest-config-silverwind": "10.2.0"
   }
