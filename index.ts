@@ -37,9 +37,9 @@ function watch(node: HTMLInputElement, opts: UppieOpts, cb: (event: DragEvent | 
     node.addEventListener("dragenter", stop);
     node.addEventListener("drop", (e: DragEvent) => {
       e.preventDefault();
-      if (e.dataTransfer.items?.[0]?.webkitGetAsEntry()) {
+      if (e.dataTransfer?.items?.[0]?.webkitGetAsEntry()) {
         entriesApi(e.dataTransfer.items, opts, cb.bind(null, e));
-      } else if (e.dataTransfer.files) {
+      } else if (e.dataTransfer?.files) {
         arrayApi(e.dataTransfer, opts, cb.bind(null, e));
       } else {
         cb(e);
@@ -53,8 +53,8 @@ function arrayApi(input: DataTransfer | HTMLInputElement, opts: UppieOpts, cb: (
   const fd = new FormData();
   const files: Array<string> = [];
 
-  for (const file of input.files) {
-    fd.append(opts.name, file, file.webkitRelativePath || file.name);
+  for (const file of input.files || []) {
+    fd.append(opts.name!, file, file.webkitRelativePath || file.name);
     files.push(file.webkitRelativePath || file.name);
   }
   cb(fd, files);
@@ -79,7 +79,7 @@ function entriesApi(items: DataTransferItemList, opts: UppieOpts, cb: any) {
   const files: Array<string> = [];
   const rootPromises: Array<Promise<any>> = [];
 
-  function readDirectory(entry: FileSystemEntry, path: string, resolve: any) {
+  function readDirectory(entry: FileSystemEntry, path: string | null, resolve: any) {
     if (!path) path = entry.name;
     readEntries(entry, null, 0, (entries: any) => {
       const promises: Array<Promise<any>> = [];
@@ -88,7 +88,7 @@ function entriesApi(items: DataTransferItemList, opts: UppieOpts, cb: any) {
           if (entry.isFile) {
             entry.file((file: File) => {
               const p = `${path}/${file.name}`;
-              fd.append(opts.name, file, p);
+              fd.append(opts.name!, file, p);
               files.push(p);
               // @ts-expect-error
               resolve();
@@ -110,7 +110,7 @@ function entriesApi(items: DataTransferItemList, opts: UppieOpts, cb: any) {
         if (webkitEntry.isFile) {
           // @ts-expect-error
           webkitEntry.file((file: File) => {
-            fd.append(opts.name, file, file.name);
+            fd.append(opts.name!, file, file.name);
             files.push(file.name);
             // @ts-expect-error
             resolve();
