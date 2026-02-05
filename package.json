@@ -23,5 +23,6 @@
     "vite-config-silverwind": "6.0.5",
     "vitest": "4.0.10",
     "vitest-config-silverwind": "10.4.2"
-  }
+  },
+  "packageManager": "pnpm@10.28.2"
 }

@@ -1,8 +1,8 @@
 SOURCE_FILES := index.ts
 DIST_FILES := dist/index.js
 
-node_modules: package-lock.json
-	npm install --no-save
+node_modules: pnpm-lock.yaml
+	pnpm install
 	@touch node_modules
 
 .PHONY: deps
@@ -10,51 +10,51 @@ deps: node_modules
 
 .PHONY: lint
 lint: node_modules
-	npx eslint --color .
-	npx tsc
+	pnpm exec eslint --color .
+	pnpm exec tsc
 
 .PHONY: lint-fix
 lint-fix: node_modules
-	npx eslint --color . --fix
-	npx tsc
+	pnpm exec eslint --color . --fix
+	pnpm exec tsc
 
 .PHONY: test
 test: node_modules
-	npx vitest
+	pnpm exec vitest
 
 .PHONY: test-update
 test-update: node_modules
-	npx vitest -u
+	pnpm exec vitest -u
 
 .PHONY: build
 build: node_modules $(DIST_FILES)
 
-$(DIST_FILES): $(SOURCE_FILES) package-lock.json vite.config.ts
-	npx vite build
+$(DIST_FILES): $(SOURCE_FILES) pnpm-lock.yaml vite.config.ts
+	pnpm exec vite build
 
 .PHONY: publish
 publish: node_modules
 	git push -u --tags origin master
-	npm publish
+	pnpm publish
 
 .PHONY: update
 update: node_modules
-	npx updates -cu
-	rm -rf node_modules package-lock.json
-	npm install
+	pnpm exec updates -cu
+	rm -rf node_modules pnpm-lock.yaml
+	pnpm install
 	@touch node_modules
 
 .PHONY: path
 patch: node_modules lint test build
-	npx versions patch package.json package-lock.json
+	pnpm exec versions patch package.json pnpm-lock.yaml
 	@$(MAKE) --no-print-directory publish
 
 .PHONY: minor
 minor: node_modules lint test build
-	npx versions minor package.json package-lock.json
+	pnpm exec versions minor package.json pnpm-lock.yaml
 	@$(MAKE) --no-print-directory publish
 
 .PHONY: major
 major: node_modules lint test build
-	npx versions major package.json package-lock.json
+	pnpm exec versions major package.json pnpm-lock.yaml
 	@$(MAKE) --no-print-directory publish
