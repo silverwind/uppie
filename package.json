@@ -15,6 +15,7 @@
     "eslint": "9.39.2",
     "eslint-config-silverwind": "120.1.2",
     "happy-dom": "20.0.10",
+    "jest-extended": "7.0.0",
     "typescript": "5.9.3",
     "typescript-config-silverwind": "13.0.2",
     "updates": "16.9.1",
