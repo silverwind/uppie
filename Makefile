@@ -35,7 +35,7 @@ $(DIST_FILES): $(SOURCE_FILES) pnpm-lock.yaml vite.config.ts
 .PHONY: publish
 publish: node_modules
 	git push -u --tags origin master
-	pnpm publish
+	pnpm publish --no-git-checks
 
 .PHONY: update
 update: node_modules
