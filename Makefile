@@ -11,12 +11,12 @@ deps: node_modules
 .PHONY: lint
 lint: node_modules
 	pnpm exec eslint --color .
-	pnpm exec tsc
+	pnpm exec tsgo
 
 .PHONY: lint-fix
 lint-fix: node_modules
 	pnpm exec eslint --color . --fix
-	pnpm exec tsc
+	pnpm exec tsgo
 
 .PHONY: test
 test: node_modules
