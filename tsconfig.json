@@ -4,7 +4,6 @@
     "strict": true,
     "types": [
       "jest-extended",
-      "vite/client",
       "vitest/globals",
     ],
   },
