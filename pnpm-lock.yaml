@@ -15,8 +15,8 @@ importers:
         specifier: 9.39.3
         version: 9.39.3(jiti@2.6.1)
       eslint-config-silverwind:
-        specifier: 122.0.2
-        version: 122.0.2(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3)
+        specifier: 122.0.4
+        version: 122.0.4(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3)
       happy-dom:
         specifier: 20.8.3
         version: 20.8.3
@@ -938,8 +938,8 @@ packages:
     resolution: {integrity: sha512-TtpcNJ3XAzx3Gq8sWRzJaVajRs0uVxA2YAkdb1jm2YkPz4G6egUFAyA3n5vtEIZefPk5Wa4UXbKuS5fKkJWdgA==}
     engines: {node: '>=10'}
 
-  eslint-config-silverwind@122.0.2:
-    resolution: {integrity: sha512-EMGM57EOUdEX1BlrjzePhoLmrfweGQG+IeUVxzVmOUywRMo8V0ueMKpE3OkjvYVUO4g/6b9DaP7kJYuEFVEjUw==}
+  eslint-config-silverwind@122.0.4:
+    resolution: {integrity: sha512-Mo3/ztgDYJwf3WMvEdsFHtUePza3dJrvrX85eqYna5aynvtOj8r7hNF5ZptkDjGY3AlFCqr6BpFE/OBDdaaXQg==}
     hasBin: true
     peerDependencies:
       eslint: '*'
@@ -2241,7 +2241,7 @@ snapshots:
 
   escape-string-regexp@4.0.0: {}
 
-  eslint-config-silverwind@122.0.2(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3):
+  eslint-config-silverwind@122.0.4(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3):
     dependencies:
       '@typescript-eslint/parser': 8.56.1(eslint@9.39.3(jiti@2.6.1))(typescript@5.9.3)
       eslint: 9.39.3(jiti@2.6.1)

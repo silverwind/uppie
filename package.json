@@ -14,7 +14,7 @@
   "devDependencies": {
     "@typescript/native-preview": "7.0.0-dev.20260306.1",
     "eslint": "9.39.3",
-    "eslint-config-silverwind": "122.0.2",
+    "eslint-config-silverwind": "122.0.4",
     "happy-dom": "20.8.3",
     "jest-extended": "7.0.0",
     "tsdown": "0.21.0",
