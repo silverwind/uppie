@@ -42,8 +42,8 @@ importers:
         specifier: 2.1.0
         version: 2.1.0(prettier@3.8.2)
       versions:
-        specifier: 14.3.1
-        version: 14.3.1
+        specifier: 15.0.0
+        version: 15.0.0
       vitest:
         specifier: 4.1.4
         version: 4.1.4(@types/node@25.6.0)(happy-dom@20.8.9)(vite@8.0.8(@types/node@25.6.0))
@@ -1274,8 +1274,8 @@ packages:
   uri-js@4.4.1:
     resolution: {integrity: sha512-7rKUyy33Q1yc98pQ1DAmLtwX109F7TIfWlW1Ydo8Wl1ii1SeHieeh0HHfPeL2fMXK6z0s8ecKs9frCuLJvndBg==}
 
-  versions@14.3.1:
-    resolution: {integrity: sha512-goCSxgrE0dWs1lOBgvdfQEaSYHlY9ogHofsAZ9KLTp10uvkm/TlZY4/I7cl2/n80tmZFSCcnhfhlE+9CEuTrcg==}
+  versions@15.0.0:
+    resolution: {integrity: sha512-y+RVJFGDWqso8TfohGZGBqouZ0gF7LlB38b7r1Yq3nAKpmDfeWrVpbrqvqbiNPRm6rPTcVXg3BwjV3EQC+EP3Q==}
     engines: {node: '>=22'}
     hasBin: true
 
@@ -2475,7 +2475,7 @@ snapshots:
     dependencies:
       punycode: 2.3.1
 
-  versions@14.3.1: {}
+  versions@15.0.0: {}
 
   vite@8.0.8(@types/node@25.6.0):
     dependencies:
