@@ -4,3 +4,5 @@
 /npm-debug.log*
 /yarn-error.log
 /yarn.lock
+.pnpm-store
+.pnpm-debug.log*
