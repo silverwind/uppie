@@ -12,20 +12,20 @@
     "dist"
   ],
   "devDependencies": {
-    "@typescript/native-preview": "7.0.0-dev.20260413.1",
-    "eslint": "10.2.0",
-    "eslint-config-silverwind": "131.0.4",
-    "happy-dom": "20.8.9",
+    "@typescript/native-preview": "7.0.0-dev.20260420.1",
+    "eslint": "10.2.1",
+    "eslint-config-silverwind": "131.0.5",
+    "happy-dom": "20.9.0",
     "jest-extended": "7.0.0",
-    "tsdown": "0.21.7",
-    "tsdown-config-silverwind": "2.0.5",
-    "typescript": "5.9.3",
-    "typescript-config-silverwind": "17.0.0",
-    "updates": "17.15.2",
+    "tsdown": "0.21.9",
+    "tsdown-config-silverwind": "2.1.0",
+    "typescript": "6.0.3",
+    "typescript-config-silverwind": "18.0.0",
+    "updates": "17.15.5",
     "updates-config-silverwind": "2.1.0",
     "versions": "15.0.0",
     "vitest": "4.1.4",
-    "vitest-config-silverwind": "11.1.4"
+    "vitest-config-silverwind": "11.3.0"
   },
   "packageManager": "pnpm@10.33.0"
 }
