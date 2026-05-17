@@ -2,34 +2,30 @@ export type UppieOpts = {
   name?: string,
 };
 
-const defaultOpts: UppieOpts = {
-  name: "files[]",
-};
+export type UppieCallback = (event: Event, formData?: FormData, files?: string[]) => unknown;
 
-type Promisable<T> = T | Promise<T>;
+const defaultName = "files[]";
 
-export function uppie(nodes: NodeList | Array<HTMLInputElement> | HTMLInputElement, opts: UppieOpts, cb: any) {
+export function uppie(
+  nodes: NodeList | Element[] | Element,
+  opts: UppieOpts | UppieCallback,
+  cb?: UppieCallback,
+) {
   if (typeof opts === "function") {
-    cb = opts;
-    opts = defaultOpts;
-  } else {
-    if (!opts) opts = {};
-    if (!opts.name) opts.name = defaultOpts.name;
+    cb = opts as UppieCallback;
+    opts = {};
   }
-
-  for (const node of ((nodes instanceof NodeList || Array.isArray(nodes)) ? nodes : [nodes])) {
-    watch(node as HTMLInputElement, opts, cb);
-  }
+  const name = opts.name || defaultName;
+  const list = nodes instanceof NodeList || Array.isArray(nodes) ? nodes : [nodes];
+  for (const node of list) watch(node as HTMLInputElement, name, cb!);
 }
 
-function watch(node: HTMLInputElement, opts: UppieOpts, cb: (event: DragEvent | Event) => Promisable<void>) {
-  if (node.tagName?.toLowerCase() === "input" && node.type === "file") {
+function watch(node: HTMLInputElement, name: string, cb: UppieCallback) {
+  if (node.tagName === "INPUT" && node.type === "file") {
     node.addEventListener("change", (e: Event) => {
-      if ((e.target as HTMLInputElement)?.files?.length) {
-        arrayApi((e.target as HTMLInputElement), opts, cb.bind(null, e));
-      } else {
-        cb(e);
-      }
+      const target = e.target as HTMLInputElement;
+      if (target.files?.length) arrayApi(target, name, cb.bind(null, e));
+      else cb(e);
     });
   } else {
     const stop = (e: DragEvent) => e.preventDefault();
@@ -37,90 +33,66 @@ function watch(node: HTMLInputElement, opts: UppieOpts, cb: (event: DragEvent | 
     node.addEventListener("dragenter", stop);
     node.addEventListener("drop", (e: DragEvent) => {
       e.preventDefault();
-      if (e.dataTransfer?.items?.[0]?.webkitGetAsEntry()) {
-        entriesApi(e.dataTransfer.items, opts, cb.bind(null, e));
-      } else if (e.dataTransfer?.files) {
-        arrayApi(e.dataTransfer, opts, cb.bind(null, e));
-      } else {
-        cb(e);
-      }
+      const dt = e.dataTransfer;
+      if (dt?.items?.[0]?.webkitGetAsEntry()) entriesApi(dt.items, name, cb.bind(null, e));
+      else if (dt?.files) arrayApi(dt, name, cb.bind(null, e));
+      else cb(e);
     });
   }
 }
 
-// prefixed API implemented in Chrome 11+ as well as array fallback
-function arrayApi(input: DataTransfer | HTMLInputElement, opts: UppieOpts, cb: (formData: FormData, files: Array<string>) => void) {
+function arrayApi(
+  input: DataTransfer | HTMLInputElement,
+  name: string,
+  cb: (fd: FormData, files: string[]) => void,
+) {
   const fd = new FormData();
-  const files: Array<string> = [];
-
+  const files: string[] = [];
   for (const file of input.files || []) {
-    fd.append(opts.name!, file, file.webkitRelativePath || file.name);
-    files.push(file.webkitRelativePath || file.name);
+    const path = file.webkitRelativePath || file.name;
+    fd.append(name, file, path);
+    files.push(path);
   }
   cb(fd, files);
 }
 
-function readEntries(entry: any, reader: FileSystemDirectoryReader | null, oldEntries: any, cb: any) {
-  const dirReader = reader || entry.createReader();
-
-  dirReader.readEntries((entries: any) => {
-    const newEntries = oldEntries ? oldEntries.concat(entries) : entries;
-    if (entries.length) {
-      setTimeout(readEntries.bind(null, entry, dirReader, newEntries, cb), 0);
-    } else {
-      cb(newEntries);
-    }
-  });
+async function readEntries(reader: FileSystemDirectoryReader): Promise<FileSystemEntry[]> {
+  const acc: FileSystemEntry[] = [];
+  while (true) {
+    const entries = await new Promise<FileSystemEntry[]>(r => reader.readEntries(r));
+    if (!entries.length) return acc;
+    acc.push(...entries);
+  }
 }
 
-// drag and drop API implemented in Chrome 11+
-function entriesApi(items: DataTransferItemList, opts: UppieOpts, cb: any) {
+function entriesApi(
+  items: DataTransferItemList,
+  name: string,
+  cb: (fd: FormData, files: string[]) => void,
+) {
   const fd = new FormData();
-  const files: Array<string> = [];
-  const rootPromises: Array<Promise<any>> = [];
+  const files: string[] = [];
+  const add = (file: File, path: string) => {
+    fd.append(name, file, path);
+    files.push(path);
+  };
 
-  function readDirectory(entry: FileSystemEntry, path: string | null, resolve: any) {
-    if (!path) path = entry.name;
-    readEntries(entry, null, 0, (entries: any) => {
-      const promises: Array<Promise<any>> = [];
-      for (const entry of entries) {
-        promises.push(new Promise(resolve => {
-          if (entry.isFile) {
-            entry.file((file: File) => {
-              const p = `${path}/${file.name}`;
-              fd.append(opts.name!, file, p);
-              files.push(p);
-              // @ts-expect-error
-              resolve();
-              // @ts-expect-error
-            }, resolve.bind());
-          } else {
-            readDirectory(entry, `${path}/${entry.name}`, resolve);
-          }
-        }));
-      }
-      Promise.all(promises).then(resolve.bind());
-    });
-  }
-
-  for (const entry of items) {
-    const webkitEntry = entry.webkitGetAsEntry();
-    if (webkitEntry) {
-      rootPromises.push(new Promise((resolve) => {
-        if (webkitEntry.isFile) {
-          // @ts-expect-error
-          webkitEntry.file((file: File) => {
-            fd.append(opts.name!, file, file.name);
-            files.push(file.name);
-            // @ts-expect-error
-            resolve();
-            // @ts-expect-error
-          }, resolve.bind());
-        } else if (webkitEntry.isDirectory) {
-          readDirectory(webkitEntry, null, resolve);
-        }
-      }));
+  async function walk(entry: any, path: string): Promise<void> {
+    if (entry.isFile) {
+      await new Promise<void>(resolve => entry.file((file: File) => {
+        add(file, path);
+        resolve();
+      }, resolve));
+    } else if (entry.isDirectory) {
+      const children = await readEntries(entry.createReader());
+      await Promise.all(children.map(child => walk(child, `${path}/${child.name}`)));
     }
   }
-  Promise.all(rootPromises).then(cb.bind(null, fd, files));
+
+  const promises: Promise<void>[] = [];
+  for (const item of items) {
+    const entry = item.webkitGetAsEntry();
+    if (entry) promises.push(walk(entry, entry.name));
+  }
+  Promise.all(promises).then(() => cb(fd, files));
 }
