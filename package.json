@@ -22,6 +22,8 @@
     "dist"
   ],
   "devDependencies": {
+    "@playwright/test": "1.60.0",
+    "@types/node": "25.7.0",
     "@typescript/native-preview": "7.0.0-dev.20260512.1",
     "eslint": "10.3.0",
     "eslint-config-silverwind": "133.0.1",
