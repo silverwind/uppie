@@ -44,7 +44,7 @@ publish: node_modules
 	pnpm publish --no-git-checks
 
 .PHONY: update
-update: node_modules
+update: node_modules update-actions
 	pnpm exec updates -cu
 	rm -rf node_modules pnpm-lock.yaml
 	pnpm install
@@ -61,3 +61,7 @@ minor: node_modules lint test build
 .PHONY: major
 major: node_modules lint test build
 	pnpm exec versions -R major package.json
+
+.PHONY: update-actions
+update-actions: node_modules
+	pnpm exec updates -u -M actions
