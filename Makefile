@@ -53,17 +53,9 @@ update-js: node_modules
 	pnpm install
 	@touch node_modules
 
-.PHONY: path
-patch: node_modules lint test build
-	pnpm exec versions -R patch package.json
-
-.PHONY: minor
-minor: node_modules lint test build
-	pnpm exec versions -R minor package.json
-
-.PHONY: major
-major: node_modules lint test build
-	pnpm exec versions -R major package.json
+.PHONY: patch minor major
+patch minor major: node_modules lint test build
+	pnpm exec versions -R $@ package.json
 
 .PHONY: update-actions
 update-actions: node_modules
