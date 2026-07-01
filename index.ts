@@ -65,7 +65,7 @@ async function readEntries(reader: FileSystemDirectoryReader): Promise<FileSyste
   }
 }
 
-function entriesApi(
+async function entriesApi(
   items: DataTransferItemList,
   name: string,
   cb: (fd: FormData, files: string[]) => void,
@@ -94,5 +94,6 @@ function entriesApi(
     const entry = item.webkitGetAsEntry();
     if (entry) promises.push(walk(entry, entry.name));
   }
-  Promise.all(promises).then(() => cb(fd, files));
+  await Promise.all(promises);
+  cb(fd, files);
 }

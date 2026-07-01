@@ -22,22 +22,22 @@
     "dist"
   ],
   "devDependencies": {
-    "@playwright/test": "1.60.0",
-    "@types/node": "25.7.0",
-    "@typescript/native-preview": "7.0.0-dev.20260512.1",
-    "eslint": "10.3.0",
-    "eslint-config-silverwind": "133.0.1",
-    "happy-dom": "20.9.0",
+    "@playwright/test": "1.61.1",
+    "@types/node": "26.0.1",
+    "@typescript/native-preview": "7.0.0-dev.20260630.1",
+    "eslint": "10.6.0",
+    "eslint-config-silverwind": "139.2.2",
+    "happy-dom": "20.10.6",
     "jest-extended": "7.0.0",
-    "tsdown": "0.22.0",
-    "tsdown-config-silverwind": "3.0.1",
+    "tsdown": "0.22.3",
+    "tsdown-config-silverwind": "3.0.4",
     "typescript": "6.0.3",
-    "typescript-config-silverwind": "18.0.0",
-    "updates": "17.16.10",
+    "typescript-config-silverwind": "20.0.0",
+    "updates": "17.18.1",
     "updates-config-silverwind": "4.0.0",
-    "versions": "15.0.3",
-    "vitest": "4.1.6",
-    "vitest-config-silverwind": "11.3.4"
+    "versions": "15.1.3",
+    "vitest": "4.1.9",
+    "vitest-config-silverwind": "11.3.6"
   },
-  "packageManager": "pnpm@11.5.2"
+  "packageManager": "pnpm@11.9.0"
 }
