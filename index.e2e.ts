@@ -71,7 +71,7 @@ window.makeDirEntry = (name, children) => {
 test("input change with single file", async ({page}) => {
   await setup(page);
   await page.evaluate(() => window.uppie(document.getElementById("f")!, window.capture));
-  await page.setInputFiles("#f", [{name: "a.txt", mimeType: "text/plain", buffer: Buffer.from("hello")}]);
+  await page.locator("#f").setInputFiles([{name: "a.txt", mimeType: "text/plain", buffer: Buffer.from("hello")}]);
   const result = await page.evaluate(() => window.waitFor());
   expect(result.files).toEqual(["a.txt"]);
   expect(result.entries).toEqual([["files[]", {name: "a.txt", size: 5}]]);
@@ -80,7 +80,7 @@ test("input change with single file", async ({page}) => {
 test("input change with multiple files", async ({page}) => {
   await setup(page);
   await page.evaluate(() => window.uppie(document.getElementById("f")!, window.capture));
-  await page.setInputFiles("#f", [
+  await page.locator("#f").setInputFiles([
     {name: "a.txt", mimeType: "text/plain", buffer: Buffer.from("a")},
     {name: "b.txt", mimeType: "text/plain", buffer: Buffer.from("bb")},
   ]);
@@ -103,7 +103,7 @@ test("input change with no files invokes cb with event only", async ({page}) => 
 test("custom name option", async ({page}) => {
   await setup(page);
   await page.evaluate(() => window.uppie(document.getElementById("f")!, {name: "uploads[]"}, window.capture));
-  await page.setInputFiles("#f", [{name: "a.txt", mimeType: "text/plain", buffer: Buffer.from("x")}]);
+  await page.locator("#f").setInputFiles([{name: "a.txt", mimeType: "text/plain", buffer: Buffer.from("x")}]);
   const result = await page.evaluate(() => window.waitFor());
   expect(result.entries![0][0]).toBe("uploads[]");
 });
@@ -111,7 +111,7 @@ test("custom name option", async ({page}) => {
 test("accepts NodeList of inputs", async ({page}) => {
   await setup(page);
   await page.evaluate(() => window.uppie(document.querySelectorAll("input"), window.capture));
-  await page.setInputFiles("#f", [{name: "n.txt", mimeType: "text/plain", buffer: Buffer.from("n")}]);
+  await page.locator("#f").setInputFiles([{name: "n.txt", mimeType: "text/plain", buffer: Buffer.from("n")}]);
   const result = await page.evaluate(() => window.waitFor());
   expect(result.files).toEqual(["n.txt"]);
 });
