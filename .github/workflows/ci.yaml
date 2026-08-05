@@ -10,7 +10,6 @@ jobs:
       fail-fast: false
       matrix:
         node: [22, 24, 26]
-
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
@@ -19,5 +18,18 @@ jobs:
         with:
           cache: pnpm
           node-version: ${{matrix.node}}
+      - run: make lint
+      - run: make test-unit
+
+  e2e:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v7
+        with:
+          cache: pnpm
+          node-version: 24
       - run: make deps
-      - run: make test
+      - run: pnpm exec playwright install chromium firefox webkit
+      - run: make test-e2e
