@@ -4,7 +4,6 @@
     "strict": true,
     "types": [
       "node",
-      "jest-extended",
       "vitest/globals",
     ],
   },

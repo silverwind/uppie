@@ -5,7 +5,7 @@ permissions:
   contents: read
 
 jobs:
-  test:
+  lint:
     strategy:
       fail-fast: false
       matrix:
@@ -19,9 +19,8 @@ jobs:
           cache: pnpm
           node-version: ${{matrix.node}}
       - run: make lint
-      - run: make test-unit
 
-  e2e:
+  test:
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v7
@@ -30,6 +29,5 @@ jobs:
         with:
           cache: pnpm
           node-version: 24
-      - run: make deps
-      - run: pnpm exec playwright install chromium firefox webkit
-      - run: make test-e2e
+      - run: make build
+      - run: make test

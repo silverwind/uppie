@@ -22,13 +22,12 @@
     "dist"
   ],
   "devDependencies": {
-    "@playwright/test": "1.62.1",
     "@types/node": "26.1.2",
     "@typescript/native-preview": "7.0.0-dev.20260707.2",
+    "@vitest/browser-playwright": "4.1.10",
     "eslint": "10.8.0",
     "eslint-config-silverwind": "143.0.0",
-    "happy-dom": "20.11.1",
-    "jest-extended": "7.0.0",
+    "playwright": "1.62.1",
     "tsdown": "0.22.14",
     "tsdown-config-silverwind": "4.0.3",
     "typescript": "6.0.3",
@@ -37,7 +36,7 @@
     "updates-config-silverwind": "4.0.5",
     "versions": "15.2.0",
     "vitest": "4.1.10",
-    "vitest-config-silverwind": "11.4.0"
+    "vitest-config-silverwind": "11.5.1"
   },
   "packageManager": "pnpm@11.18.0"
 }

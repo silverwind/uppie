@@ -18,19 +18,16 @@ lint-fix: node_modules
 	pnpm exec eslint-silverwind --color . --fix
 	pnpm exec tsgo
 
-.PHONY: test
-test: test-unit test-e2e
+.PHONY: browsers
+browsers: node_modules
+	pnpm exec playwright install --only-shell chromium firefox webkit
 
-.PHONY: test-unit
-test-unit: node_modules
+.PHONY: test
+test: browsers
 	pnpm exec vitest
 
-.PHONY: test-e2e
-test-e2e: node_modules build
-	pnpm exec playwright test
-
 .PHONY: test-update
-test-update: node_modules
+test-update: browsers
 	pnpm exec vitest -u
 
 .PHONY: build
@@ -40,7 +37,7 @@ $(DIST_FILES): $(SOURCE_FILES) pnpm-lock.yaml tsdown.config.ts
 	pnpm exec tsdown
 
 .PHONY: publish
-publish: node_modules
+publish: build
 	pnpm publish --no-git-checks
 
 .PHONY: update
