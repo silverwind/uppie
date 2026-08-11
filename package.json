@@ -36,7 +36,7 @@
     "updates-config-silverwind": "4.0.5",
     "versions": "15.2.0",
     "vitest": "4.1.10",
-    "vitest-config-silverwind": "11.5.1"
+    "vitest-config-silverwind": "11.6.0"
   },
   "packageManager": "pnpm@11.18.0"
 }
