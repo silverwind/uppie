@@ -22,21 +22,21 @@
     "dist"
   ],
   "devDependencies": {
-    "@types/node": "26.1.2",
+    "@types/node": "26.4.0",
     "@typescript/native-preview": "7.0.0-dev.20260707.2",
-    "@vitest/browser-playwright": "4.1.10",
-    "eslint": "10.8.0",
-    "eslint-config-silverwind": "143.0.0",
+    "@vitest/browser-playwright": "4.1.11",
+    "eslint": "10.9.1",
+    "eslint-config-silverwind": "145.0.2",
     "playwright": "1.62.1",
     "tsdown": "0.22.14",
     "tsdown-config-silverwind": "4.0.3",
     "typescript": "6.0.3",
     "typescript-config-silverwind": "20.0.3",
-    "updates": "17.20.2",
+    "updates": "18.0.7",
     "updates-config-silverwind": "4.0.5",
-    "versions": "15.2.0",
-    "vitest": "4.1.10",
-    "vitest-config-silverwind": "11.6.0"
+    "versions": "15.3.7",
+    "vitest": "4.1.11",
+    "vitest-config-silverwind": "11.6.1"
   },
-  "packageManager": "pnpm@11.18.0"
+  "packageManager": "pnpm@11.24.0"
 }
