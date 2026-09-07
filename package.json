@@ -38,5 +38,5 @@
     "vitest": "4.1.11",
     "vitest-config-silverwind": "11.6.1"
   },
-  "packageManager": "pnpm@11.24.0"
+  "packageManager": "pnpm@12.3.4"
 }
