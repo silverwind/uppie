@@ -45,7 +45,7 @@ function dirEntry(name: string, children: unknown[]) {
   };
 }
 
-describe.sequential("input", () => { // userEvent resolves the input by role, so only one can exist
+describe("input", {concurrent: false}, () => { // userEvent resolves the input by role, so only one can exist
   test("files", async () => {
     const input = fileInput();
     const [cb, result] = capture();
