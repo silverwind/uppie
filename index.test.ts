@@ -62,12 +62,14 @@ describe("input", {concurrent: false}, () => {
     });
   });
 
-  test("no files calls back with the event only", async () => {
-    const input = fileInput();
-    const [cb, result] = capture();
-    uppie(input, cb);
-    input.dispatchEvent(new Event("change", {bubbles: true}));
-    expect(await result).toEqual({files: undefined, entries: undefined});
+  test("no files calls back with the event only, also in XHTML documents", async () => {
+    const xhtml = new DOMParser().parseFromString(`<input xmlns="http://www.w3.org/1999/xhtml" type="file"/>`, "application/xhtml+xml");
+    for (const input of [fileInput(), xhtml.documentElement]) {
+      const [cb, result] = capture();
+      uppie(input, cb);
+      input.dispatchEvent(new Event("change", {bubbles: true}));
+      expect(await result).toEqual({files: undefined, entries: undefined});
+    }
   });
 
   test("custom name", async () => {

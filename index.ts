@@ -20,7 +20,7 @@ export function uppie(
 }
 
 function watch(node: HTMLInputElement, name: string, cb: UppieCallback) {
-  if (node.tagName === "INPUT" && node.type === "file") {
+  if (node.localName === "input" && node.type === "file") {
     node.addEventListener("change", e => {
       const target = e.target as HTMLInputElement;
       if (target.files?.length) arrayApi(target.files, name, cb.bind(null, e));
