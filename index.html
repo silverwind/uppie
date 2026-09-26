@@ -9,10 +9,7 @@
     <pre class="output"></pre>
     <script type="module">
       import {uppie} from "./dist/index.js";
-      uppie(document.querySelectorAll("input"), (_e, _fd, files) => {
-        document.querySelector(".output").textContent = files.join("\n");
-      });
-      uppie(document.documentElement, (_e, _fd, files) => {
+      uppie([...document.querySelectorAll("input"), document.documentElement], (_e, _fd, files) => {
         document.querySelector(".output").textContent = files.join("\n");
       });
     </script>

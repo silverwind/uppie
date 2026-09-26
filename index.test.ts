@@ -1,6 +1,5 @@
 import {userEvent} from "vitest/browser";
-import {uppie} from "./index.ts";
-import type {UppieCallback} from "./index.ts";
+import {uppie, type UppieCallback} from "./index.ts";
 
 type Entry = [name: string, file: string, size: number];
 type Capture = {files?: string[], entries?: Entry[]};
@@ -45,7 +44,7 @@ function dirEntry(name: string, children: unknown[]) {
   };
 }
 
-describe("input", {concurrent: false}, () => { // userEvent resolves the input by role, so only one can exist
+describe("input", {concurrent: false}, () => {
   test("files", async () => {
     const input = fileInput();
     const [cb, result] = capture();

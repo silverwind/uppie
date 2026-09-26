@@ -1,7 +1,6 @@
 {
   "extends": "typescript-config-silverwind",
   "compilerOptions": {
-    "strict": true,
     "types": [
       "node",
       "vitest/globals",
