@@ -1,30 +1,23 @@
 # uppie
 [![](https://img.shields.io/npm/v/uppie.svg?style=flat)](https://www.npmjs.org/package/uppie) [![](https://img.shields.io/npm/dm/uppie.svg)](https://www.npmjs.org/package/uppie) [![](https://img.shields.io/bundlephobia/minzip/uppie.svg)](https://bundlephobia.com/package/uppie) [![](https://packagephobia.com/badge?p=uppie)](https://packagephobia.com/result?p=uppie)
 
-> Cross-browser file and directory and upload library
+> Cross-browser directory and multi-file upload library
 
 `uppie` is a tiny JavaScript library which helps you with file and directory uploads in browsers. It supports all current and past implementations of multi-file and directory uploads and provides you with a `FormData` object you can submit directly to a server through either `XMLHttpRequest` or `fetch`. Both the `<input type="file">` element and drag-and-drop are supported.
 
 ## Usage
-```bash
-npm install uppie
-```
-```js
-import {uppie} from 'uppie';
 
-uppie(document.querySelector('#file'), async (e, formData, files) => {
-  await fetch('/upload', {method: 'POST', body: formData});
+```sh
+pnpm add uppie
+```
+
+```js
+import {uppie} from "uppie";
+
+uppie(document.querySelector("#file"), async (e, formData, files) => {
+  await fetch("/upload", {method: "POST", body: formData});
 });
 ```
-
-## Browser support
-
-|| files via input[type=file] | files via DnD | directories via input[type=file] | directories via DnD |
-|---------|---------------------- |---------------|----------------------|--------------|
-| Firefox | yes                   | yes           | yes (50+)            | yes (50+)    |
-| Chrome  | yes                   | yes           | yes (29+)            | yes (29+)    |
-| Edge    | yes                   | yes           | yes (13+)            | yes (14+)    |
-| Safari  | yes                   | yes           | yes (11.1+)          | yes (11.1+)  |
 
 ## Notes
 
@@ -33,8 +26,8 @@ uppie(document.querySelector('#file'), async (e, formData, files) => {
 
 ## API
 ### uppie(node, [opts], callback)
-- `node` *Node* or *NodeList*: One or more DOM nodes. If a `<input type="file">` is given, uppie will monitor it for `change` events. Any other element type will be enabled as a dropzone and watched for `drop` events. If you want to use both on the same element, use a hidden `<input>` and forward the click event.
-- `opts` *Object*: A options object which can contain:
+- `node` *Node* or *NodeList*: One or more DOM nodes. If an `<input type="file">` is given, uppie will monitor it for `change` events. Any other element type will be enabled as a dropzone and watched for `drop` events. If you want to use both on the same element, use a hidden `<input>` and forward the click event.
+- `opts` *Object*: An options object which can contain:
   - `name`: The `name` attribute for creating the FormData entries. Default: `"files[]"`.
 - `callback` *Function*: callback which is called every time the selected files change or when files are dropped in the dropzone.
 
@@ -71,12 +64,10 @@ Content-Type: text/plain
 
 ## PHP example
 
-Below is example for PHP 7.0 and possibly earlier versions. PHP does not parse the path from the `filename` field, so it is necessary to submit the path through other means, like as separate FormData fields as done in the example.
+Below is an example for PHP 7.0 and possibly earlier versions. PHP does not parse the path from the `filename` field, so it is necessary to submit the path through other means, like as separate FormData fields as done in the example.
 
 ````js
-import {uppie} from 'uppie';
-
-const uppie = new Uppie();
+import {uppie} from "uppie";
 
 uppie(document.documentElement, (event, formData, files) => {
   files.forEach(path => {
@@ -84,7 +75,7 @@ uppie(document.documentElement, (event, formData, files) => {
   });
 
   const xhr = new XMLHttpRequest();
-  xhr.open('POST', 'upload.php');
+  xhr.open("POST", "upload.php");
   xhr.send(formData);
 });
 ````
@@ -105,6 +96,6 @@ foreach ($_FILES['files']['name'] as $i => $name) {
 }
 ````
 
-Note that PHP's [upload limits](http://php.net/manual/en/ini.core.php#ini.sect.file-uploads) might need to be raised depending on use case.
+Note that PHP's [upload limits](https://www.php.net/manual/en/ini.core.php#ini.sect.file-uploads) might need to be raised depending on use case.
 
 © [silverwind](https://github.com/silverwind), distributed under BSD licence
