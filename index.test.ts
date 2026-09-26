@@ -44,6 +44,12 @@ function dirEntry(name: string, children: unknown[]) {
   };
 }
 
+function unreadableDirEntry(name: string) {
+  return {isFile: false, isDirectory: true, name, createReader: () => ({
+    readEntries: (_cb: unknown, errorCb: (error: DOMException) => void) => errorCb(new DOMException("", "NotReadableError")),
+  })};
+}
+
 describe("input", {concurrent: false}, () => {
   test("files", async () => {
     const input = fileInput();
@@ -99,12 +105,12 @@ describe("drop", () => {
     expect(await result).toEqual({files: ["a.txt"], entries: [["files[]", "a.txt", 2]]});
   });
 
-  test("walks nested directories", async () => {
+  test("walks nested directories and skips unreadable ones", async () => {
     const zone = document.createElement("div");
     const [cb, result] = capture();
     uppie(zone, cb);
     const file = new File(["q"], "deep.txt");
-    const outer = dirEntry("outer", [dirEntry("inner", [fileEntry("deep.txt", file)])]);
+    const outer = dirEntry("outer", [dirEntry("inner", [fileEntry("deep.txt", file)]), unreadableDirEntry("locked")]);
     drop(zone, {items: [{webkitGetAsEntry: () => outer}], files: [file]});
     expect((await result).files).toEqual(["outer/inner/deep.txt"]);
   });

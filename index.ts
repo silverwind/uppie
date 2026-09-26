@@ -58,7 +58,7 @@ function arrayApi(
 async function readEntries(reader: FileSystemDirectoryReader): Promise<FileSystemEntry[]> {
   const acc: FileSystemEntry[] = [];
   while (true) {
-    const entries = await new Promise<FileSystemEntry[]>(resolve => reader.readEntries(resolve));
+    const entries = await new Promise<FileSystemEntry[]>(resolve => reader.readEntries(resolve, () => resolve([])));
     if (!entries.length) return acc;
     acc.push(...entries);
   }
