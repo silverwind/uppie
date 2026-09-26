@@ -87,7 +87,7 @@ foreach ($_FILES['files']['name'] as $i => $name) {
     $path = dirname($fullpath);
 
     if (!is_dir('uploads/'.$path)){
-      mkdir('uploads/'.$path);
+      mkdir('uploads/'.$path, 0777, true);
     }
     if (move_uploaded_file($_FILES['files']['tmp_name'][$i], 'uploads/'.$fullpath)) {
         echo '<li>'.$name.'</li>';
