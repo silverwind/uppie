@@ -3,3 +3,4 @@ updateNotifier: false
 ignoreScripts: true
 minimumReleaseAge: 0
 verifyDepsBeforeRun: false
+dlxCacheMaxAge: 0
