@@ -2,7 +2,7 @@
   "name": "uppie",
   "version": "4.1.7",
   "description": "Cross-browser directory and multi-file upload library",
-  "author": "silverwind",
+  "author": "silverwind <me@silverwind.io>",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/silverwind/uppie.git"
@@ -18,28 +18,27 @@
     "dropzone",
     "browser"
   ],
-  "exports": "./dist/index.js",
   "type": "module",
   "sideEffects": false,
+  "exports": "./dist/index.js",
   "files": [
     "dist"
   ],
+  "packageManager": "pnpm@12.6.0",
   "devDependencies": {
     "@types/node": "26.6.3",
-    "@typescript/native-preview": "7.0.0-dev.20260707.2",
     "@vitest/browser-playwright": "5.0.2",
     "eslint": "10.11.0",
-    "eslint-config-silverwind": "151.0.1",
+    "eslint-config-silverwind": "155.2.0",
     "playwright": "1.63.0",
-    "tsdown": "0.23.0",
-    "tsdown-config-silverwind": "4.1.2",
-    "typescript": "6.0.3",
+    "tsdown": "0.23.4",
+    "tsdown-config-silverwind": "4.2.0",
+    "typescript": "7.0.2",
     "typescript-config-silverwind": "21.0.1",
     "updates": "19.0.2",
-    "updates-config-silverwind": "4.0.7",
+    "updates-config-silverwind": "4.1.0",
     "versions": "15.5.1",
     "vitest": "5.0.2",
     "vitest-config-silverwind": "12.0.5"
-  },
-  "packageManager": "pnpm@12.6.0"
+  }
 }

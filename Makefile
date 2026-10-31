@@ -11,12 +11,12 @@ deps: node_modules
 .PHONY: lint
 lint: node_modules
 	pnpm exec eslint-silverwind --color .
-	pnpm exec tsgo
+	pnpm exec tsc
 
 .PHONY: lint-fix
 lint-fix: node_modules
 	pnpm exec eslint-silverwind --color . --fix
-	pnpm exec tsgo
+	pnpm exec tsc
 
 .PHONY: browsers
 browsers: node_modules

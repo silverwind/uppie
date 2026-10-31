@@ -8,7 +8,7 @@ export function uppie(
   nodes: NodeList | Element[] | Element,
   opts: UppieOpts | UppieCallback,
   cb?: UppieCallback,
-) {
+): void {
   if (typeof opts === "function") {
     cb = opts as UppieCallback;
     opts = {};
